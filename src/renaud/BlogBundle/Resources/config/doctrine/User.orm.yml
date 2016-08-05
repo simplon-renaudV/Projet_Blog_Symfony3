@@ -1,0 +1,27 @@
+renaud\BlogBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: renaud\BlogBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        mail:
+            type: string
+            length: '50'
+        nom:
+            type: string
+            length: '30'
+        prenom:
+            type: string
+            length: '30'
+        avatar:
+            type: string
+            length: 255
+        password:
+            type: string
+            length: '255'
+    lifecycleCallbacks: {  }

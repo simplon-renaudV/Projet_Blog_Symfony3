@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Blog</title>
+</head>
+<body>
+
+	{% block header %}
+	<header>
+		<div>
+			<p>Accueil</p>
+			<p>Articles</p>
+			{% block login %}
+				<p>Connexion</p>
+			{% endblock %}
+		</div>
+	</header>
+	{% endblock %}
+	
+	{% block body %}
+	{% endblock %}
+	
+	<footer>
+		<p>footer présent sur toutes les pages</p>
+	</footer>
+</body>
+</html>

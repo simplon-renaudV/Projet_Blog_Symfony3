@@ -1,0 +1,14 @@
+{% extends "renaudBlogBundle:Blog:admin.html.twig" %}
+
+{% block body %}
+	{% for flash_message in app.session.flashBag.get('addOk') %}
+    	<div class="flash-notice">
+        	{{ flash_message }}
+    	</div>
+	{% endfor %}
+	
+	<p>Page d'ajout d'un article</p>
+	{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+{% endblock %}
