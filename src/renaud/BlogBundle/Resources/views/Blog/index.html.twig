@@ -1,13 +1,11 @@
 {% extends "renaudBlogBundle:Blog:template.html.twig" %}
 
 {% block body %}
-	<p>liste des Articles</p>
 
 	{% for article in articles %}
-		<ul>
+		<ul class="articles">
 			<li>
-				<p><a href="{{ path('renaud_blog_view_article',{'id': article.id}) }}">{{ article.id }}</a></p>
-				<p>{{ article.titre }}</p>
+				<a href="{{ path('renaud_blog_view_article',{'id': article.id}) }}"><p class="titre">{{ article.titre }}</p></a>
 				<p>{{ article.contenu }}</p>
 				<p>{{ article.auteur }}</p>
 				<p>{{ article.date | date('d-m-Y') }}</p>
@@ -20,6 +18,6 @@
 					{% endif %}
 				{% endfor %}
 			</li>
-		</ul>
+		</ul class="articles">
 	{% endfor %}
 {% endblock %}

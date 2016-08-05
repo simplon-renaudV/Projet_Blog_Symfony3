@@ -4,8 +4,10 @@ namespace renaud\BlogBundle\Controller;
 
 use renaud\BlogBundle\Form\ArticleType;
 use renaud\BlogBundle\Form\UserType;
+use renaud\BlogBundle\Form\LoginType;
 use renaud\BlogBundle\Entity\Article;
 use renaud\BlogBundle\Entity\User;
+use renaud\BlogBundle\Entity\Login;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -58,7 +60,12 @@ class BlogController extends Controller {
         )); 
     }
 
-	public function loginAction () {
+	public function loginAction (Request $request) {
+		$login = new Login;
+
+		$form = $this->createForm(LoginType::class, $login);
+
+		$form->handleRequest($request);
 
 		return $this->render('renaudBlogBundle:Blog:login.html.twig');
 	}

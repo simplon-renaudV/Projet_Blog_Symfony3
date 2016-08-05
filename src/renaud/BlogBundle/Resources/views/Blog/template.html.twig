@@ -3,26 +3,26 @@
 <head>
 	<meta charset="utf-8">
 	<title>Blog</title>
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 </head>
 <body>
 
-	{% block header %}
 	<header>
-		<div>
-			<p>Accueil</p>
-			<p>Articles</p>
+			<div class="menu"><a href="{{ path('renaud_blog_homepage') }}"><p>Accueil</p></a></div>
+			<div class="menu"><p>Articles</p></div>
+			<div class="menu">
 			{% block login %}
 				<p>Connexion</p>
 			{% endblock %}
-		</div>
+			</div>
 	</header>
-	{% endblock %}
 	
+	<br/>
 	{% block body %}
 	{% endblock %}
 	
 	<footer>
-		<p>footer présent sur toutes les pages</p>
+		<p>© Renaud Vivancos 2016</p>
 	</footer>
 </body>
 </html>
