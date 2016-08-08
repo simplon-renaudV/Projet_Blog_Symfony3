@@ -19,4 +19,6 @@ renaud\BlogBundle\Entity\Article:
             type: text
         date:
             type: datetime
+        publie:
+            type: boolean
     lifecycleCallbacks: {  }

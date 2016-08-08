@@ -1,0 +1,23 @@
+{% extends "renaudBlogBundle:Blog:template.html.twig" %}
+
+{% block body %}
+
+	{% for article in articles %}
+		<ul class="articles">
+			<li>
+				<a href="{{ path('renaud_blog_view_article',{'id': article.id}) }}"><p class="titre">{{ article.titre }}</p></a>
+				<p>{{ article.contenu }}</p>
+				<p>{{ article.auteur }}</p>
+				<p>Dernière modification le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p>
+
+				{% for articlesVus in vus %}
+					{% if articlesVus == article.id %}
+						<p>Article déjà lu</p>
+					{% else %}
+						<p>Article pas encore lu </p>
+					{% endif %}
+				{% endfor %}
+			</li>
+		</ul class="articles">
+	{% endfor %}
+{% endblock %}

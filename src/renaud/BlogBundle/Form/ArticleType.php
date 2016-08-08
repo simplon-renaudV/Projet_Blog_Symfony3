@@ -15,6 +15,6 @@ class ArticleType extends AbstractType
             ->add('Titre', TextType::class)
 			->add('Auteur', TextType::class)
 			->add('Contenu', TextareaType::class)
-			->add('Publier', SubmitType::class, array('label' => 'Publier'));
+			->add('Sauvegarder', SubmitType::class, array('label' => 'Sauvegarder'));
     }
 }

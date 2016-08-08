@@ -17,10 +17,19 @@ class BlogController extends Controller {
 	public function indexAction (Request $request) {
 		$articles = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
-		->findBy(array(), array('date'=>'DESC'), 6);
+		->findBy(array('publie'=>1), array('date'=>'DESC'), 4);
 		$session = $request->getSession();
 
 		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
+	}
+
+	public function listeArticlesAction (Request $request) {
+		$articles = $this->getDoctrine()
+		->getRepository('renaudBlogBundle:Article')
+		->findAll();
+		$session = $request->getSession();
+
+		return $this->render('renaudBlogBundle:Blog:articles.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
 	}
 
 	public function adminArticlesAction () {

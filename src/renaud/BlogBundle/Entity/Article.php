@@ -33,6 +33,11 @@ class Article
     private $date;
 
     /**
+     * @var boolean
+     */
+    private $publie;
+
+    /**
      * Get id
      *
      * @return int
@@ -136,5 +141,28 @@ class Article
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set publie
+     * 
+     * @param boolean $publie
+     * 
+     * @return Article
+     */
+    public function setPublie($publie)
+    {
+        $this->publie = $publie;
+        return $this;
+    }
+
+    /**
+     * Get publie
+     *
+     * @return boolean
+     */
+    public function getPublie()
+    {
+        return $this->publie;
     }
 }
