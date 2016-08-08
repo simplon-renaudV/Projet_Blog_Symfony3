@@ -17,23 +17,14 @@ class BlogController extends Controller {
 	public function indexAction (Request $request) {
 		$articles = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
-		->findAll();
-
+		->findBy(array(), array('date'=>'DESC'), 6);
 		$session = $request->getSession();
 
 		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
 	}
 
-	public function adminAction () {
-		return $this->render('renaudBlogBundle:Blog:admin.html.twig');
-	}
-
 	public function adminArticlesAction () {
 		return $this->render('renaudBlogBundle:Blog:adminArticles.html.twig');
-	}
-
-	public function adminComAction () {
-		return $this->render('renaudBlogBundle:Blog:adminCom.html.twig');
 	}
 
 	public function addAction (Request $request) {
@@ -64,10 +55,32 @@ class BlogController extends Controller {
 		$login = new Login;
 
 		$form = $this->createForm(LoginType::class, $login);
-
 		$form->handleRequest($request);
 
-		return $this->render('renaudBlogBundle:Blog:login.html.twig');
+		if ($form->isSubmitted() && $form->isValid()) {
+			$donnees = $form->getData();
+			
+			$user = $this->getDoctrine()
+			->getRepository('renaudBlogBundle:User')
+			->findOneByMail($donnees->getMail());	
+		
+			if ($user == null)
+			{
+				$this->addFlash('userUnknown', 'Nom d\'utilisateur incorrect');
+				return $this->redirectToRoute('renaud_blog_login');
+			}
+			else {
+				if (($user->getMail() == $donnees->getMail()) && ($user->getPassword() == $donnees->getPassword())) {
+					return $this->redirectToRoute('renaud_blog_homepage');
+				}
+				else {
+					$this->addFlash('wrongPassword', 'Mot de passe incorrect');
+					return $this->redirectToRoute('renaud_blog_login');
+				}
+			}
+		}
+
+		return $this->render('renaudBlogBundle:Blog:login.html.twig', array('form'=> $form->createView(),));
 	}
 
 	public function registerAction (Request $request) {

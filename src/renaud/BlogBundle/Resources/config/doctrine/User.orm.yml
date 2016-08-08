@@ -12,6 +12,7 @@ renaud\BlogBundle\Entity\User:
         mail:
             type: string
             length: '50'
+            unique: true
         nom:
             type: string
             length: '30'
@@ -21,6 +22,7 @@ renaud\BlogBundle\Entity\User:
         avatar:
             type: string
             length: 255
+            nullable: true
         password:
             type: string
             length: '255'

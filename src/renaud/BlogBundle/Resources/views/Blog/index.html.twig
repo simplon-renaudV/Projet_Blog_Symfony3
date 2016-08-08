@@ -8,7 +8,7 @@
 				<a href="{{ path('renaud_blog_view_article',{'id': article.id}) }}"><p class="titre">{{ article.titre }}</p></a>
 				<p>{{ article.contenu }}</p>
 				<p>{{ article.auteur }}</p>
-				<p>{{ article.date | date('d-m-Y') }}</p>
+				<p>Dernière modification le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p>
 
 				{% for articlesVus in vus %}
 					{% if articlesVus == article.id %}

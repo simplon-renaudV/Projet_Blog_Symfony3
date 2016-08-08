@@ -2,17 +2,9 @@ renaud_blog_homepage:
     path:     /
     defaults: { _controller: renaudBlogBundle:Blog:index }
 
-renaud_blog_admin:
-    path:     /admin
-    defaults: { _controller: renaudBlogBundle:Blog:admin }
-
 renaud_blog_admin_articles:
     path:     /adminArticles
     defaults: { _controller: renaudBlogBundle:Blog:adminArticles}
-
-renaud_blog_admin_com:
-    path:     /adminCom
-    defaults: { _controller: renaudBlogBundle:Blog:adminCom}
 
 renaud_blog_add_article:
     path:     /add

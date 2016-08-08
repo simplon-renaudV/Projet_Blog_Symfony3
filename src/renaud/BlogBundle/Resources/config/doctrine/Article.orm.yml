@@ -18,5 +18,5 @@ renaud\BlogBundle\Entity\Article:
         contenu:
             type: text
         date:
-            type: date
+            type: datetime
     lifecycleCallbacks: {  }

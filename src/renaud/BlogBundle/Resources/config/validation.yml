@@ -16,6 +16,9 @@ renaud\BlogBundle\Entity\Article:
               maxMessage: "Le nom de l'auteur ne doit pas dépasser {{ limit }} caractères"
 
 renaud\BlogBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: mail
+
     properties:
         mail:
           - NotBlank: { message : Email obligatoire }
