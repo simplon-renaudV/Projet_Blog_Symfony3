@@ -15,28 +15,37 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class BlogController extends Controller {
 
 	public function indexAction (Request $request) {
+
+		$session = $request->getSession();
+
 		$articles = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
 		->findBy(array('publie'=>1), array('date'=>'DESC'), 4);
-		$session = $request->getSession();
-
-		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
+		
+		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'user'=>$session->get('user'), 'vus'=>$session->get('vus')));
 	}
 
 	public function listeArticlesAction (Request $request) {
+
+		$session = $request->getSession();
+
 		$articles = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
 		->findAll();
-		$session = $request->getSession();
 
-		return $this->render('renaudBlogBundle:Blog:articles.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
+		return $this->render('renaudBlogBundle:Blog:articles.html.twig', array('articles' => $articles, 'user'=>$session->get('user'), 'vus'=>$session->get('vus')));
 	}
 
-	public function adminArticlesAction () {
-		return $this->render('renaudBlogBundle:Blog:adminArticles.html.twig');
+	public function adminArticlesAction (Request $request) {
+		$session = $request->getSession();
+		
+		return $this->render('renaudBlogBundle:Blog:adminArticles.html.twig', array('user'=>$session->get('user')));
 	}
 
 	public function addAction (Request $request) {
+	
+		$session = $request->getSession();
+
 		$article = new Article();
 
 		$form = $this->createForm(ArticleType::class, $article);
@@ -56,11 +65,14 @@ class BlogController extends Controller {
 		}
 
 		return $this->render('renaudBlogBundle:Blog:add.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), 'user'=>$session->get('user')
         )); 
     }
 
 	public function loginAction (Request $request) {
+		
+		$session = $request->getSession();
+
 		$login = new Login;
 
 		$form = $this->createForm(LoginType::class, $login);
@@ -80,6 +92,7 @@ class BlogController extends Controller {
 			}
 			else {
 				if (($user->getMail() == $donnees->getMail()) && ($user->getPassword() == $donnees->getPassword())) {
+					$session->set('user', $donnees->getMail());
 					return $this->redirectToRoute('renaud_blog_homepage');
 				}
 				else {
@@ -89,10 +102,13 @@ class BlogController extends Controller {
 			}
 		}
 
-		return $this->render('renaudBlogBundle:Blog:login.html.twig', array('form'=> $form->createView(),));
+		return $this->render('renaudBlogBundle:Blog:login.html.twig', array('form'=> $form->createView(),'user'=>$session->get('user')));
 	}
 
 	public function registerAction (Request $request) {
+		
+		$session = $request->getSession();
+
 		$user = new User();
 
 		$form = $this->createForm(UserType::class, $user);
@@ -111,20 +127,29 @@ class BlogController extends Controller {
 			return $this->redirectToRoute('renaud_blog_homepage');
 		}		
 
-		return $this->render('renaudBlogBundle:Blog:register.html.twig', array('form' => $form->createView(),));
+		return $this->render('renaudBlogBundle:Blog:register.html.twig', array('form' => $form->createView(),'user'=>$session->get('user')));
 	}
 
 	public function viewAction ($id, Request $request) {
+
+		$session = $request->getSession();
+
 		$article = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
 		->find($id);
-
-		$session = $request->getSession();
 
 		$articlesVus = $session->get('vus');
 		$articlesVus[$id] = $id;
 		$session->set('vus', $articlesVus);
 
-		return $this->render('renaudBlogBundle:Blog:view.html.twig', array('article' => $article));
+		return $this->render('renaudBlogBundle:Blog:view.html.twig', array('article' => $article, 'user'=>$session->get('user')));
+	}
+
+	public function disconnectAction (Request $request) {
+
+		$session = $request->getSession();
+		$session->set('user', null);
+
+		return $this->redirectToRoute('renaud_blog_homepage');
 	}
 }

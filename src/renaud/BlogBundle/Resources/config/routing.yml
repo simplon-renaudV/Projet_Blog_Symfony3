@@ -27,3 +27,7 @@ renaud_blog_view_article:
     defaults: { _controller: renaudBlogBundle:Blog:view }
     requirements:
         id: \d+
+
+renaud_blog_disconnect:
+    path:     /disconnect
+    defaults: { _controller: renaudBlogBundle:Blog:disconnect }
