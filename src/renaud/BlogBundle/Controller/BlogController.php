@@ -39,7 +39,56 @@ class BlogController extends Controller {
 	public function adminArticlesAction (Request $request) {
 		$session = $request->getSession();
 		
-		return $this->render('renaudBlogBundle:Blog:adminArticles.html.twig', array('user'=>$session->get('user')));
+		$articles = $this->getDoctrine()
+		->getRepository('renaudBlogBundle:Article')
+		->findAll();
+
+		return $this->render('renaudBlogBundle:Blog:adminArticles.html.twig', array('articles'=>$articles, 'user'=>$session->get('user')));
+	}
+
+	public function updateAction (Request $request, $id) {
+		$session = $request->getSession();
+
+		$em = $this->getDoctrine()->getManager();
+    	$article = $em->getRepository('renaudBlogBundle:Article')->find($id);
+
+   		if (!$article) {
+        	throw $this->createNotFoundException('Cet article n\'existe pas ');
+    	}
+
+    	$form = $this->createForm(ArticleType::class, $article);
+
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+			$donnees = $form->getData();
+			$donnees->setDate(new \DateTime());
+
+			$em = $this->getDoctrine()->getManager();
+
+			$em->persist($donnees);
+			$em->flush();
+		
+			$this->addFlash('modifyOk', 'Article modifié');
+  			return $this->redirectToRoute('renaud_blog_homepage');
+		}
+
+    	return $this->render('renaudBlogBundle:Blog:modify.html.twig', array('form'=>$form->createView(), 'user'=>$session->get('user')));
+	}
+
+	public function removeAction (Request $request, $id) {
+		$session = $request->getSession();
+
+		$article = $this->getDoctrine()
+		->getRepository('renaudBlogBundle:Article')
+		->find($id);
+
+		$em = $this->getDoctrine()->getManager();
+		$em->remove($article);
+		$em->flush();
+	
+		$this->addFlash('removeOk', 'Article supprimé');
+  		return $this->redirectToRoute('renaud_blog_homepage');
 	}
 
 	public function addAction (Request $request) {

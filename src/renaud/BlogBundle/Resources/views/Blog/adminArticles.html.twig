@@ -1,6 +1,14 @@
 {% extends "renaudBlogBundle:Blog:index.html.twig" %}
 
 {% block body %}
-	<p>Page d'administration des articles</p>
-	<p><a href='{{ path('renaud_blog_disconnect') }}'>Se déconnecter</a></p>
+	<p><a href='{{ path('renaud_blog_disconnect') }}'>Se déconnecter</a></p><br/>
+
+	<p><a href='{{ path('renaud_blog_add_article') }}'>Ajouter un article</a></p><br/>
+
+	{% for article in articles %}
+		<p>Id : {{article.id}}</p>
+		<p>Titre : {{article.titre}}</p>
+		<p><a href='{{ path('renaud_blog_update_article', {'id': article.id}) }}' >Modifier</a></p>
+		<p><a href='{{ path('renaud_blog_remove_article', {'id': article.id}) }}' >Supprimer</a></p><br/>
+	{% endfor %}
 {% endblock %}

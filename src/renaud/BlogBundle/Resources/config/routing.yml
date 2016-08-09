@@ -31,3 +31,15 @@ renaud_blog_view_article:
 renaud_blog_disconnect:
     path:     /disconnect
     defaults: { _controller: renaudBlogBundle:Blog:disconnect }
+
+renaud_blog_remove_article:
+    path:   /remove/{id}
+    defaults: { _controller: renaudBlogBundle:Blog:remove }
+    requirements:
+        id: \d+
+
+renaud_blog_update_article:
+    path:  /update/{id}
+    defaults: { _controller: renaudBlogBundle:Blog:update }
+    requirements:
+        id: \d+
