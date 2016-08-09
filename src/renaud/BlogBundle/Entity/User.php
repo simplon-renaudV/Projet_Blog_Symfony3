@@ -35,6 +35,11 @@ class User
     /**
      * @var string
      */
+    private $urlAvatar;
+
+    /**
+     * @var string
+     */
     private $password;
 
 
@@ -166,6 +171,30 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set urlAvatar
+     *
+     * @param string $urlAvatar
+     *
+     * @return User
+     */
+    public function setUrlAvatar($urlAvatar)
+    {
+        $this->urlAvatar = $urlAvatar;
+
+        return $this;
+    }
+
+    /**
+     * Get urlAvatar
+     *
+     * @return string
+     */
+    public function getUrlAvatar()
+    {
+        return $this->urlAvatar;
     }
 }
 

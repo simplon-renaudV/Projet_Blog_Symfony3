@@ -43,3 +43,13 @@ renaud_blog_update_article:
     defaults: { _controller: renaudBlogBundle:Blog:update }
     requirements:
         id: \d+
+
+renaud_blog_publier_article:
+    path: /publier/{id}
+    defaults: { _controller: renaudBlogBundle:Blog:publier }
+    requirements:
+        id: \d+
+
+renaud_blog_edit_profile:
+    path: /profil/{id}
+    defaults: { _controller: renaudBlogBundle:Blog:editProfile }

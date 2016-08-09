@@ -40,5 +40,3 @@ renaud\BlogBundle\Entity\User:
               max: 30
               maxMessage: "Le prénom ne doit pas dépasser {{ limit }} caractères"
               minMessage: "Le prénom doit contenir {{ limit }} caractères minimum"
-
-
