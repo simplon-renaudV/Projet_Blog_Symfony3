@@ -83,6 +83,7 @@ class BlogController extends Controller {
 		if ($form->isSubmitted() && $form->isValid()) {
 			$donnees = $form->getData();
 			$donnees->setDate(new \DateTime());
+			$donnees->setPublie(0);
 
 			$em = $this->getDoctrine()->getManager();
 			
