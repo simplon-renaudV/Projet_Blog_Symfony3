@@ -15,7 +15,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class BlogController extends Controller {
 
-	// Page d'accueil, affiche uniquement les 4 derniers articles
 	public function indexAction (Request $request) {
 
 		$session = $request->getSession();
@@ -28,7 +27,7 @@ class BlogController extends Controller {
 	}
 
 	/**
-   	* @Security("has_role('IS_AUTHENTICATED_REMEMBERED')")
+   	* @Security("has_role('ROLE_USER')")
    	*/
 	public function listeArticlesAction (Request $request) {
 
@@ -42,7 +41,7 @@ class BlogController extends Controller {
 	}
 
 	/**
-   	* @Security("has_role('IS_AUTHENTICATED_REMEMBERED')")
+   	* @Security("has_role('ROLE_USER')")
    	*/
 	public function viewAction ($id, Request $request) {
 
@@ -176,43 +175,6 @@ class BlogController extends Controller {
 		return $this->redirectToRoute('renaud_blog_homepage');
 	}
 
-	/*// Formulaire de login
-	public function loginAction (Request $request) {
-		
-		$session = $request->getSession();
-
-		$login = new Login;
-
-		$form = $this->createForm(LoginType::class, $login);
-		$form->handleRequest($request);
-
-		if ($form->isSubmitted() && $form->isValid()) {
-			$donnees = $form->getData();
-			
-			$user = $this->getDoctrine()
-			->getRepository('renaudBlogBundle:User')
-			->findOneByMail($donnees->getMail());	
-		
-			if ($user == null)
-			{
-				$this->addFlash('userUnknown', 'Nom d\'utilisateur incorrect');
-				return $this->redirectToRoute('renaud_blog_login');
-			}
-			else {
-				if ($user->getMail() == $donnees->getMail() && password_verify($donnees->getPassword(), $user->getPassword())) {
-						
-					return $this->redirectToRoute('renaud_blog_homepage');
-				}
-				else {
-					$this->addFlash('wrongPassword', 'Mot de passe incorrect');
-					return $this->redirectToRoute('renaud_blog_login');
-				}
-			}
-		}
-
-		return $this->render('renaudBlogBundle:Blog:login.html.twig', array('form'=> $form->createView()));
-	}*/
-
 	// Formulaire d'enregistrement
 	public function registerAction (Request $request) {
 		
@@ -226,9 +188,16 @@ class BlogController extends Controller {
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$donnees = $form->getData();
-  			$donnees->setPassword(password_hash($donnees->getPassword(),PASSWORD_DEFAULT));
+			$donnees->setRoles(array('ROLE_USER'));
 
 			$em = $this->getDoctrine()->getManager();
+
+			$password = $donnees->getPassword();
+      		$encoder = $this->container->get('security.password_encoder');
+      		$encoded = $encoder->encodePassword($user, $password);
+
+      		$user->setPassword($encoded);
+      		$user->setSalt('');
 
  			$avatar = $donnees->getAvatar();
             $fileName = md5(uniqid()).'.'.$avatar->guessExtension();
@@ -249,12 +218,12 @@ class BlogController extends Controller {
 	/**
    	* @Security("has_role('ROLE_ADMIN')")
    	*/
-	public function editProfileAction (Request $request, $id) {
+	public function editProfileAction (Request $request, $user) {
 
 		$session = $request->getSession();
 
 		$em = $this->getDoctrine()->getManager();
-    	$user = $em->getRepository('renaudBlogBundle:User')->find($id);
+    	$user = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
 
     	$user->setAvatar(null);
 
@@ -264,14 +233,18 @@ class BlogController extends Controller {
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$donnees = $form->getData();
-			$donnees->setPassword(password_hash($donnees->getPassword(),PASSWORD_DEFAULT));
 			
+			$password = $donnees->getPassword();
+      		$encoder = $this->container->get('security.password_encoder');
+      		$encoded = $encoder->encodePassword($user, $password);
+
+      		$user->setPassword($encoded);
 			$em->persist($donnees);
 			$em->flush();
 
 			return $this->redirectToRoute('renaud_blog_homepage');
 		}
 
-    	return $this->render('renaudBlogBundle:Blog:editProfile.html.twig', array('form'=>$form->createView()));
+    	return $this->render('renaudBlogBundle:Blog:editProfile.html.twig', array('form'=>$form->createView(), 'user'=>$user));
 	}
 }

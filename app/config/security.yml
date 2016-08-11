@@ -1,7 +1,8 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-        renaud\BlogBundle\Entity\User: plaintext
+        renaud\BlogBundle\Entity\User: 
+            algorithm: bcrypt
+            cost: 12
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
@@ -23,7 +24,7 @@ security:
         
         main:
             pattern:      ^/
-            anonymous:    false
+            anonymous:    true
             provider:     main
             form_login:
                 login_path: renaud_blog_login

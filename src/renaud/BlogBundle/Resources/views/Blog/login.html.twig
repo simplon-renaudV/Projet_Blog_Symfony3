@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>test role utilisateur</title>
-</head>
-<body>
+{% extends "renaudBlogBundle:Blog:template.html.twig" %}
+
 {% block body %}
 
   {# S'il y a une erreur, on l'affiche dans un joli cadre #}
@@ -21,6 +17,6 @@
     <input type="submit" value="Connexion" />
   </form>
 
+    <p>Si vous n'avez pas de compte utilisateur c'est par <a href="{{ path('renaud_blog_register') }}">ici</a></p>  
+
 {% endblock %}
-</body>
-</html>

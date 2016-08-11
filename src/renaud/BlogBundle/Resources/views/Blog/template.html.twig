@@ -14,6 +14,8 @@
 			{% block login %}
 				{% if is_granted('ROLE_ADMIN') %}
   					<a href="{{ path('renaud_blog_admin_articles') }}"><p>Administration</p></a>
+  				{% elseif is_granted('ROLE_USER') %}
+  					<a href="{{ path('renaud_blog_logout') }}"><p>Déconnexion</p></a>
   				{% else %}
 					<a href="{{ path('renaud_blog_login') }}"><p>Connexion</p></a>
   				{% endif %}

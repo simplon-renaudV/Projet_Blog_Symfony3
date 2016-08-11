@@ -43,7 +43,7 @@ renaud_blog_publier_article:
         id: \d+
 
 renaud_blog_edit_profile:
-    path: /profil/{id}
+    path: /profil/{user}
     defaults: { _controller: renaudBlogBundle:Blog:editProfile }
 
 renaud_blog_login:

@@ -32,6 +32,7 @@ renaud\BlogBundle\Entity\User:
         username:
             type: string
             length: '50'
+            unique: true
         roles:
             type: array
         
