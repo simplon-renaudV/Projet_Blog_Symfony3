@@ -1,21 +1,26 @@
-{% extends "renaudBlogBundle:Blog:index.html.twig" %}
-
+<!DOCTYPE html>
+<html>
+<head>
+  <title>test role utilisateur</title>
+</head>
+<body>
 {% block body %}
-	{% for flash_message in app.session.flashBag.get('userUnknown') %}
-    	<div class="flash-notice">
-        	{{ flash_message }}
-    	</div>
-	{% endfor %}
 
-	{% for flash_message in app.session.flashBag.get('wrongPassword') %}
-		<div class="flash-notice">
-    		{{ flash_message }}
-		</div>
-	{% endfor %}
-	
-	{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
-	{{ form_widget(form) }}
-	{{ form_end(form) }}
+  {# S'il y a une erreur, on l'affiche dans un joli cadre #}
+  {% if error %}
+    <div class="alert alert-danger">{{ error.message }}</div>
+  {% endif %}
 
-	<p>Si vous n'avez pas de compte utilisateur c'est par <a href="{{ path('renaud_blog_register') }}">ici</a></p>	
+  {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
+  <form action="{{ path('renaud_blog_login_check') }}" method="post">
+    <label for="username">Login :</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="_password" />
+    <br />
+    <input type="submit" value="Connexion" />
+  </form>
+
 {% endblock %}
+</body>
+</html>

@@ -11,6 +11,7 @@ use renaud\BlogBundle\Entity\Login;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class BlogController extends Controller {
 
@@ -23,10 +24,12 @@ class BlogController extends Controller {
 		->getRepository('renaudBlogBundle:Article')
 		->findBy(array('publie'=>1), array('date'=>'DESC'), 4);
 		
-		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'user'=>$session->get('user'), 'vus'=>$session->get('vus')));
+		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
 	}
 
-	// Affiche tout les articles
+	/**
+   	* @Security("has_role('IS_AUTHENTICATED_REMEMBERED')")
+   	*/
 	public function listeArticlesAction (Request $request) {
 
 		$session = $request->getSession();
@@ -35,10 +38,12 @@ class BlogController extends Controller {
 		->getRepository('renaudBlogBundle:Article')
 		->findAll();
 
-		return $this->render('renaudBlogBundle:Blog:articles.html.twig', array('articles' => $articles, 'user'=>$session->get('user'), 'vus'=>$session->get('vus')));
+		return $this->render('renaudBlogBundle:Blog:articles.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
 	}
 
-	// Affiche un seul article identifié par $id
+	/**
+   	* @Security("has_role('IS_AUTHENTICATED_REMEMBERED')")
+   	*/
 	public function viewAction ($id, Request $request) {
 
 		$session = $request->getSession();
@@ -51,10 +56,12 @@ class BlogController extends Controller {
 		$articlesVus[$id] = $id;
 		$session->set('vus', $articlesVus);
 
-		return $this->render('renaudBlogBundle:Blog:view.html.twig', array('article' => $article, 'user'=>$session->get('user')));
+		return $this->render('renaudBlogBundle:Blog:view.html.twig', array('article' => $article));
 	}
 
-	// Page d'administration
+	/**
+   	* @Security("has_role('ROLE_ADMIN')")
+   	*/
 	public function adminArticlesAction (Request $request) {
 		$session = $request->getSession();
 		
@@ -62,14 +69,12 @@ class BlogController extends Controller {
 		->getRepository('renaudBlogBundle:Article')
 		->findAll();
 
-		$user = $this->getDoctrine()
-		->getRepository('renaudBlogBundle:User')
-		->findOneByMail($session->get('user'));
-
-		return $this->render('renaudBlogBundle:Blog:adminArticles.html.twig', array('articles'=>$articles, 'user'=>$session->get('user'), 'id'=>$user->getId()));
+		return $this->render('renaudBlogBundle:Blog:adminArticles.html.twig', array('articles'=>$articles));
 	}
 
-	// Formulaire pour ajouter un article
+	/**
+   	* @Security("has_role('ROLE_ADMIN')")
+   	*/
 	public function addAction (Request $request) {
 	
 		$session = $request->getSession();
@@ -95,11 +100,12 @@ class BlogController extends Controller {
 		}
 
 		return $this->render('renaudBlogBundle:Blog:add.html.twig', array(
-            'form' => $form->createView(), 'user'=>$session->get('user')
-        )); 
+            'form' => $form->createView())); 
     }	
 
-    // Formulaire pour modifier un article identifié par $id
+	/**
+   	* @Security("has_role('ROLE_ADMIN')")
+   	*/
     public function updateAction (Request $request, $id) {
 		$session = $request->getSession();
 
@@ -125,10 +131,12 @@ class BlogController extends Controller {
   			return $this->redirectToRoute('renaud_blog_homepage');
 		}
 
-    	return $this->render('renaudBlogBundle:Blog:modify.html.twig', array('form'=>$form->createView(), 'user'=>$session->get('user')));
+    	return $this->render('renaudBlogBundle:Blog:modify.html.twig', array('form'=>$form->createView()));
 	}
 
-	// Suppression de l'article $id
+	/**
+   	* @Security("has_role('ROLE_ADMIN')")
+   	*/
 	public function removeAction (Request $request, $id) {
 		$session = $request->getSession();
 
@@ -144,7 +152,9 @@ class BlogController extends Controller {
   		return $this->redirectToRoute('renaud_blog_homepage');
 	}
 
-	// Permet de publier ou dépublier un article $id
+	/**
+   	* @Security("has_role('ROLE_ADMIN')")
+   	*/
 	public function publierAction (Request $request, $id) {
 		$session = $request->getSession();
 
@@ -166,7 +176,7 @@ class BlogController extends Controller {
 		return $this->redirectToRoute('renaud_blog_homepage');
 	}
 
-	// Formulaire de login
+	/*// Formulaire de login
 	public function loginAction (Request $request) {
 		
 		$session = $request->getSession();
@@ -191,7 +201,6 @@ class BlogController extends Controller {
 			else {
 				if ($user->getMail() == $donnees->getMail() && password_verify($donnees->getPassword(), $user->getPassword())) {
 						
-					$session->set('user', $donnees->getMail());
 					return $this->redirectToRoute('renaud_blog_homepage');
 				}
 				else {
@@ -201,8 +210,8 @@ class BlogController extends Controller {
 			}
 		}
 
-		return $this->render('renaudBlogBundle:Blog:login.html.twig', array('form'=> $form->createView(),'user'=>$session->get('user')));
-	}
+		return $this->render('renaudBlogBundle:Blog:login.html.twig', array('form'=> $form->createView()));
+	}*/
 
 	// Formulaire d'enregistrement
 	public function registerAction (Request $request) {
@@ -234,10 +243,12 @@ class BlogController extends Controller {
 			return $this->redirectToRoute('renaud_blog_homepage');
 		}		
 
-		return $this->render('renaudBlogBundle:Blog:register.html.twig', array('form' => $form->createView(),'user'=>$session->get('user')));
+		return $this->render('renaudBlogBundle:Blog:register.html.twig', array('form' => $form->createView()));
 	}
 
-	// Permet de modifier les informations du profil
+	/**
+   	* @Security("has_role('ROLE_ADMIN')")
+   	*/
 	public function editProfileAction (Request $request, $id) {
 
 		$session = $request->getSession();
@@ -257,21 +268,10 @@ class BlogController extends Controller {
 			
 			$em->persist($donnees);
 			$em->flush();
-			
-			$session->set('user', $donnees->getMail());
 
 			return $this->redirectToRoute('renaud_blog_homepage');
 		}
 
-    	return $this->render('renaudBlogBundle:Blog:editProfile.html.twig', array('form'=>$form->createView(), 'user'=>$session->get('user')));
-	}
-
-	// Déconnexion de la session
-	public function disconnectAction (Request $request) {
-
-		$session = $request->getSession();
-		$session->set('user', null);
-
-		return $this->redirectToRoute('renaud_blog_homepage');
+    	return $this->render('renaudBlogBundle:Blog:editProfile.html.twig', array('form'=>$form->createView()));
 	}
 }

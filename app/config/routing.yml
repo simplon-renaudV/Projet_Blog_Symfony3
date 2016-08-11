@@ -1,4 +1,3 @@
 renaud_blog:
     resource: "@renaudBlogBundle/Resources/config/routing.yml"
     prefix:   /
-

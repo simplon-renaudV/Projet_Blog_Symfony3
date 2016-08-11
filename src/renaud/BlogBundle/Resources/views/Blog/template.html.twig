@@ -12,11 +12,11 @@
 			<div class="menu"><a href="{{ path('renaud_blog_listeArticles') }}"><p>Articles</p></a></div>
 			<div class="menu">
 			{% block login %}
-				{% if user == null %}
+				{% if is_granted('ROLE_ADMIN') %}
+  					<a href="{{ path('renaud_blog_admin_articles') }}"><p>Administration</p></a>
+  				{% else %}
 					<a href="{{ path('renaud_blog_login') }}"><p>Connexion</p></a>
-				{% else %}
-					<a href="{{ path('renaud_blog_admin_articles') }}"><p>Administration</p></a>
-				{% endif %}
+  				{% endif %}
 			{% endblock %}
 			</div>
 	</header>

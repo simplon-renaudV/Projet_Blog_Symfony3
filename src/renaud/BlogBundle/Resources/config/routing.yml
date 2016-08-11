@@ -14,10 +14,6 @@ renaud_blog_add_article:
     path:     /add
     defaults: { _controller: renaudBlogBundle:Blog:add }
 
-renaud_blog_login:
-    path:     /login
-    defaults: { _controller: renaudBlogBundle:Blog:login }
-
 renaud_blog_register:
     path:     /register
     defaults: { _controller: renaudBlogBundle:Blog:register }
@@ -27,10 +23,6 @@ renaud_blog_view_article:
     defaults: { _controller: renaudBlogBundle:Blog:view }
     requirements:
         id: \d+
-
-renaud_blog_disconnect:
-    path:     /disconnect
-    defaults: { _controller: renaudBlogBundle:Blog:disconnect }
 
 renaud_blog_remove_article:
     path:   /remove/{id}
@@ -53,3 +45,13 @@ renaud_blog_publier_article:
 renaud_blog_edit_profile:
     path: /profil/{id}
     defaults: { _controller: renaudBlogBundle:Blog:editProfile }
+
+renaud_blog_login:
+    path: /login
+    defaults: { _controller: renaudBlogBundle:User:login }
+
+renaud_blog_login_check:
+    path: /login_check
+
+renaud_blog_logout:
+    path: /logout

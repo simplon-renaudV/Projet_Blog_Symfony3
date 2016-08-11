@@ -2,10 +2,12 @@
 
 namespace renaud\BlogBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * User
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -13,8 +15,13 @@ class User
     private $id;
 
     /**
+    * @var string
+    */
+    private $username;
+    
+    /**
      * @var string
-     */
+     */ 
     private $mail;
 
     /**
@@ -35,13 +42,17 @@ class User
     /**
      * @var string
      */
-    private $urlAvatar;
-
-    /**
-     * @var string
-     */
     private $password;
 
+    /**
+    * @var string
+    */
+    private $salt;
+    
+    /**
+    * @var array
+    */
+    private $roles = array();
 
     /**
      * Get id
@@ -51,6 +62,28 @@ class User
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * Get username
+     * 
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     /**
@@ -174,27 +207,51 @@ class User
     }
 
     /**
-     * Set urlAvatar
+     * Set salt
      *
-     * @param string $urlAvatar
+     * @param string $salt
      *
      * @return User
      */
-    public function setUrlAvatar($urlAvatar)
+    public function setSalt($salt)
     {
-        $this->urlAvatar = $urlAvatar;
-
-        return $this;
+        $this->salt = $salt;
     }
 
     /**
-     * Get urlAvatar
-     *
+     * Get salt
+     * 
      * @return string
      */
-    public function getUrlAvatar()
+    public function getSalt()
     {
-        return $this->urlAvatar;
+        return $this->salt;
+    }
+
+    /**
+     * Set roles
+     *
+     * @param array $roles
+     *
+     * @return User
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * Get roles
+     * 
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function eraseCredentials()
+    {
     }
 }
 

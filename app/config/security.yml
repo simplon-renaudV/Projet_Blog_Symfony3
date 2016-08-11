@@ -1,29 +1,33 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        renaud\BlogBundle\Entity\User: plaintext
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user: { password: 'userpass', roles: ['ROLE_USER'] }
-                    admin: { password: 'adminpass', roles: ['ROLE_ADMIN'] }
+        main:
+            entity:
+                class: renaud\BlogBundle\Entity\User
+                property: username
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        main_login:
+            pattern:   ^/login$
+            anonymous: true # On autorise alors les anonymes sur ce pare-feu
+        
         main:
             pattern:      ^/
-            anonymous:    true
-            provider:     in_memory
+            anonymous:    false
+            provider:     main
             form_login:
-                login_path: login
-                check_path: login_check
+                login_path: renaud_blog_login
+                check_path: renaud_blog_login_check
             logout:
-                path:       logout
+                path:       renaud_blog_logout
                 target:     /

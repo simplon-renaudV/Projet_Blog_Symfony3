@@ -26,4 +26,13 @@ renaud\BlogBundle\Entity\User:
         password:
             type: string
             length: '255'
+        salt:
+            type: string
+            length: '255'
+        username:
+            type: string
+            length: '50'
+        roles:
+            type: array
+        
     lifecycleCallbacks: {  }
