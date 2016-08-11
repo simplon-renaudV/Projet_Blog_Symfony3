@@ -7,10 +7,52 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use renaud\BlogBundle\Entity\User;
+use renaud\BlogBundle\Form\UserType;
 
 class UserController extends Controller
 {
+  // Formulaire d'enregistrement
+  public function registerAction (Request $request) {
+    
+    $session = $request->getSession();
 
+    $user = new User();
+
+    $form = $this->createForm(UserType::class, $user);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      $donnees = $form->getData();
+      $donnees->setRoles(array('ROLE_USER'));
+
+      $em = $this->getDoctrine()->getManager();
+
+      $password = $donnees->getPassword();
+      $encoder = $this->container->get('security.password_encoder');
+      $encoded = $encoder->encodePassword($user, $password);
+
+      $user->setPassword($encoded);
+      $user->setSalt('');
+
+      $avatar = $donnees->getAvatar();
+      if ($avatar != null) {
+        $fileName = md5(uniqid()).'.'.$avatar->guessExtension();
+        $avatar->move($this->getParameter('dossier_avatar'), $fileName);
+
+        $donnees->setAvatar($fileName);
+      }
+
+      $em->persist($donnees);
+      $em->flush();
+
+      $this->addFlash('registerOk', 'Utilisateur bien enregistré');
+      return $this->redirectToRoute('renaud_blog_homepage');
+    }   
+
+    return $this->render('renaudBlogBundle:Blog:register.html.twig', array('form' => $form->createView()));
+  }
+  
   public function loginAction(Request $request)
   {
 
@@ -31,4 +73,36 @@ class UserController extends Controller
     ));
   }
 
+  /**
+    * @Security("has_role('ROLE_ADMIN')")
+    */
+  public function editProfileAction (Request $request, $user) {
+
+    $session = $request->getSession();
+
+    $em = $this->getDoctrine()->getManager();
+      $user = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
+
+      $user->setAvatar(null);
+
+      $form = $this->createForm(UserType::class, $user);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      $donnees = $form->getData();
+      
+      $password = $donnees->getPassword();
+          $encoder = $this->container->get('security.password_encoder');
+          $encoded = $encoder->encodePassword($user, $password);
+
+          $user->setPassword($encoded);
+      $em->persist($donnees);
+      $em->flush();
+
+      return $this->redirectToRoute('renaud_blog_homepage');
+    }
+
+      return $this->render('renaudBlogBundle:Blog:editProfile.html.twig', array('form'=>$form->createView(), 'user'=>$user));
+  }
 }

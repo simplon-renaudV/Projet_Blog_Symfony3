@@ -16,7 +16,7 @@ renaud_blog_add_article:
 
 renaud_blog_register:
     path:     /register
-    defaults: { _controller: renaudBlogBundle:Blog:register }
+    defaults: { _controller: renaudBlogBundle:User:register }
 
 renaud_blog_view_article:
     path:     /view/{id}
@@ -44,7 +44,7 @@ renaud_blog_publier_article:
 
 renaud_blog_edit_profile:
     path: /profil/{user}
-    defaults: { _controller: renaudBlogBundle:Blog:editProfile }
+    defaults: { _controller: renaudBlogBundle:User:editProfile }
 
 renaud_blog_login:
     path: /login
