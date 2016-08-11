@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\Authentication\Token\Storage;
 
 class BlogController extends Controller {
 
@@ -89,6 +90,17 @@ class BlogController extends Controller {
 			$donnees->setDate(new \DateTime());
 			$donnees->setPublie(0);
 
+			// On récupère le service
+			$security = $this->get('security.token_storage');
+
+			// On récupère le token
+			$token = $security->getToken();
+
+			// Si la requête courante n'est pas derrière un pare-feu, $token est null
+			// Sinon, on récupère l'utilisateur
+			$user = $token->getUser();
+
+			$donnees->setAuteur($user->getUsername());
 			$em = $this->getDoctrine()->getManager();
 			
  			$em->persist($donnees);
@@ -168,6 +180,7 @@ class BlogController extends Controller {
 		}
 		else {
 			$article->setPublie(true);
+			$article->setDate(new \DateTime());
 		}
 
 		$em->flush();

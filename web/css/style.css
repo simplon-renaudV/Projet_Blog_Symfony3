@@ -65,7 +65,7 @@ header {
 body {
 	width: 100%;
 }
-.articles {
+.articles li {
 	text-align: justify;
 	width: 30%;
 	float: left;

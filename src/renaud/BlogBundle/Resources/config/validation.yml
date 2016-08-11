@@ -8,12 +8,6 @@ renaud\BlogBundle\Entity\Article:
         
         contenu:
           - NotBlank: { message: "Le contenu est obligatoire" }
-        
-        auteur:
-          - NotBlank: { message: "Le nom de l'auteur est obligatoire" }
-          - Length:
-              max: 30
-              maxMessage: "Le nom de l'auteur ne doit pas dépasser {{ limit }} caractères"
 
 renaud\BlogBundle\Entity\User:
     constraints:
