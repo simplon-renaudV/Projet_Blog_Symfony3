@@ -16,6 +16,9 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage;
 
 class BlogController extends Controller {
 
+	// Page d'accueil
+	// **************
+
 	public function indexAction (Request $request) {
 
 		$session = $request->getSession();
@@ -26,6 +29,9 @@ class BlogController extends Controller {
 		
 		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
 	}
+
+	// Liste de tout les articles publies
+	// **********************************
 
 	/**
    	* @Security("has_role('ROLE_USER')")
@@ -40,6 +46,9 @@ class BlogController extends Controller {
 
 		return $this->render('renaudBlogBundle:Blog:articles.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
 	}
+
+	// Affichage d'un seul article
+	// ***************************
 
 	/**
    	* @Security("has_role('ROLE_USER')")
@@ -59,6 +68,9 @@ class BlogController extends Controller {
 		return $this->render('renaudBlogBundle:Blog:view.html.twig', array('article' => $article));
 	}
 
+	// Back-office
+	// ***********
+
 	/**
    	* @Security("has_role('ROLE_ADMIN')")
    	*/
@@ -71,6 +83,9 @@ class BlogController extends Controller {
 
 		return $this->render('renaudBlogBundle:Blog:adminArticles.html.twig', array('articles'=>$articles));
 	}
+
+	// Ajout d'un article
+	// ******************
 
 	/**
    	* @Security("has_role('ROLE_ADMIN')")
@@ -114,6 +129,9 @@ class BlogController extends Controller {
             'form' => $form->createView())); 
     }	
 
+    // Modification d'un article
+    // *************************
+
 	/**
    	* @Security("has_role('ROLE_ADMIN')")
    	*/
@@ -145,6 +163,9 @@ class BlogController extends Controller {
     	return $this->render('renaudBlogBundle:Blog:modify.html.twig', array('form'=>$form->createView()));
 	}
 
+	// Suppression d'un article
+	// ************************
+
 	/**
    	* @Security("has_role('ROLE_ADMIN')")
    	*/
@@ -162,6 +183,9 @@ class BlogController extends Controller {
 		$this->addFlash('removeOk', 'Article supprimé');
   		return $this->redirectToRoute('renaud_blog_homepage');
 	}
+
+	// Publication ou dépublication d'un article
+	// *****************************************
 
 	/**
    	* @Security("has_role('ROLE_ADMIN')")

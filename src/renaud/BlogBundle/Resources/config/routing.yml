@@ -55,3 +55,11 @@ renaud_blog_login_check:
 
 renaud_blog_logout:
     path: /logout
+
+renaud_blog_liste_users:
+    path: /users
+    defaults: { _controller: renaudBlogBundle:User:listeUsers }
+
+renaud_blog_change_role:
+    path: /changeRole/{user}
+    defaults: { _controller: renaudBlogBundle:User:changeRole }

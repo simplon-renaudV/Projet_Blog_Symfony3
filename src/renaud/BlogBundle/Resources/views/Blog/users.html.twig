@@ -1,0 +1,14 @@
+{% extends "renaudBlogBundle:Blog:template.html.twig" %}
+
+{% block body %}
+	<ul>
+	{% for user in users %}
+    	<li>username : {{ user.username }}<br/>
+    	roles : 
+    	{% for role in user.roles %}
+    		{{ role }}<br/>
+ 		{% endfor %}
+   		<a href="{{ path('renaud_blog_change_role', {'user': user.username }) }}">Changer Role</a></li>	
+	{% endfor %}
+	</ul>
+{% endblock %}

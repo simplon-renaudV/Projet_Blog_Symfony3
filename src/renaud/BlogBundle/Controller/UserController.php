@@ -11,98 +11,136 @@ use renaud\BlogBundle\Form\UserType;
 
 class UserController extends Controller
 {
-  // Formulaire d'enregistrement
-  public function registerAction (Request $request) {
-    
-    $session = $request->getSession();
+	// Formulaire d'enregistrement
+	// ***************************
 
-    $user = new User();
+	public function registerAction (Request $request) {
+	
+	$session = $request->getSession();
 
-    $form = $this->createForm(UserType::class, $user);
+	$user = new User();
 
-    $form->handleRequest($request);
+	$form = $this->createForm(UserType::class, $user);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-      $donnees = $form->getData();
-      $donnees->setRoles(array('ROLE_ADMIN'));
+	$form->handleRequest($request);
 
-      $em = $this->getDoctrine()->getManager();
+	if ($form->isSubmitted() && $form->isValid()) {
+		$donnees = $form->getData();
+	 	$donnees->setRoles(array('ROLE_ADMIN'));
 
-      $password = $donnees->getPassword();
-      $encoder = $this->container->get('security.password_encoder');
-      $encoded = $encoder->encodePassword($user, $password);
+		$em = $this->getDoctrine()->getManager();
 
-      $user->setPassword($encoded);
-      $user->setSalt('');
+		$password = $donnees->getPassword();
+		$encoder = $this->container->get('security.password_encoder');
+		$encoded = $encoder->encodePassword($user, $password);
 
-      $avatar = $donnees->getAvatar();
-      if ($avatar != null) {
-        $fileName = md5(uniqid()).'.'.$avatar->guessExtension();
-        $avatar->move($this->getParameter('dossier_avatar'), $fileName);
+		$user->setPassword($encoded);
+		$user->setSalt('');
 
-        $donnees->setAvatar($fileName);
-      }
+		$avatar = $donnees->getAvatar();
 
-      $em->persist($donnees);
-      $em->flush();
+		if ($avatar != null) {
+			$fileName = md5(uniqid()).'.'.$avatar->guessExtension();
+			$avatar->move($this->getParameter('dossier_avatar'), $fileName);
 
-      $this->addFlash('registerOk', 'Utilisateur bien enregistré');
-      return $this->redirectToRoute('renaud_blog_homepage');
-    }   
+			$donnees->setAvatar($fileName);
+		}
 
-    return $this->render('renaudBlogBundle:Blog:register.html.twig', array('form' => $form->createView()));
-  }
+	 	$em->persist($donnees);
+		$em->flush();
+
+		$this->addFlash('registerOk', 'Utilisateur bien enregistré');
+		return $this->redirectToRoute('renaud_blog_homepage');
+	}   
+
+		return $this->render('renaudBlogBundle:Blog:register.html.twig', array('form' => $form->createView()));
+  	}
   
-  public function loginAction(Request $request)
-  {
+	// Formulaire de login
+	// *******************
 
-    // Si le visiteur est déjà identifié, on le redirige vers l'accueil
-    if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-      return $this->redirectToRoute('renaud_blog_homepage');
-    }
+	public function loginAction(Request $request)
+	{
+		// Si le visiteur est déjà identifié, on le redirige vers l'accueil
+		if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+			return $this->redirectToRoute('renaud_blog_homepage');
+		}
 
-    // Le service authentication_utils permet de récupérer le nom d'utilisateur
-    // et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
-    // (mauvais mot de passe par exemple)
+		// Le service authentication_utils permet de récupérer le nom d'utilisateur
+		// et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
+		// (mauvais mot de passe par exemple)
 
-    $authenticationUtils = $this->get('security.authentication_utils');
+		$authenticationUtils = $this->get('security.authentication_utils');
 
-    return $this->render('renaudBlogBundle:Blog:login.html.twig', array(
-      'last_username' => $authenticationUtils->getLastUsername(),
-      'error'         => $authenticationUtils->getLastAuthenticationError(),
-    ));
-  }
+		return $this->render('renaudBlogBundle:Blog:login.html.twig', array(
+		  'last_username' => $authenticationUtils->getLastUsername(),
+		  'error'         => $authenticationUtils->getLastAuthenticationError(),
+		));
+	}
 
-  /**
-    * @Security("has_role('ROLE_ADMIN')")
-    */
-  public function editProfileAction (Request $request, $user) {
+	// Formulaire de modification du profil
+	// ************************************
 
-    $session = $request->getSession();
+	/**
+	 * @Security("has_role('ROLE_USER')")
+	 */
+	public function editProfileAction (Request $request, $user) {
 
-    $em = $this->getDoctrine()->getManager();
-      $user = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
+		$session = $request->getSession();
 
-      $user->setAvatar(null);
+		$em = $this->getDoctrine()->getManager();
+		$user = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
 
-      $form = $this->createForm(UserType::class, $user);
+		$user->setAvatar(null);
 
-    $form->handleRequest($request);
+		$form = $this->createForm(UserType::class, $user);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-      $donnees = $form->getData();
-      
-      $password = $donnees->getPassword();
-          $encoder = $this->container->get('security.password_encoder');
-          $encoded = $encoder->encodePassword($user, $password);
+		$form->handleRequest($request);
 
-          $user->setPassword($encoded);
-      $em->persist($donnees);
-      $em->flush();
+		if ($form->isSubmitted() && $form->isValid()) {
+			$donnees = $form->getData();
+		  
+			$password = $donnees->getPassword();
+			$encoder = $this->container->get('security.password_encoder');
+			$encoded = $encoder->encodePassword($user, $password);
 
-      return $this->redirectToRoute('renaud_blog_homepage');
-    }
+			$user->setPassword($encoded);
+			$em->persist($donnees);
+			$em->flush();
 
-      return $this->render('renaudBlogBundle:Blog:editProfile.html.twig', array('form'=>$form->createView(), 'user'=>$user));
-  }
+			return $this->redirectToRoute('renaud_blog_homepage');
+		}
+
+		return $this->render('renaudBlogBundle:Blog:editProfile.html.twig', array('form'=>$form->createView(), 'user'=>$user));
+	}
+
+	// Liste des utilisateurs
+	// **********************
+
+	/**
+	 * @Security("has_role('ROLE_ADMIN')")
+	 */
+	public function listeUsersAction () {
+		$em = $this->getDoctrine()->getManager();
+		$users = $em->getRepository('renaudBlogBundle:User')->findAll();
+
+		return $this->render('renaudBlogBundle:Blog:users.html.twig', array('users'=>$users));
+	}
+
+	public function changeRoleAction ($user) {
+		$em = $this->getDoctrine()->getManager();
+		$userTmp = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
+
+		if ($userTmp->getRoles() === ['ROLE_USER']) {
+			$userTmp->setRoles(array('ROLE_ADMIN'));
+		}
+		elseif ($userTmp->getRoles() === ['ROLE_ADMIN']) {
+			$userTmp->setRoles(array('ROLE_USER'));
+		}
+
+		$em->persist($userTmp);
+		$em->flush();
+
+		return $this->redirectToRoute('renaud_blog_liste_users');
+	}
 }

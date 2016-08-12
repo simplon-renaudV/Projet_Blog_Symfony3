@@ -15,7 +15,7 @@
 				{% if is_granted('ROLE_ADMIN') %}
   					<a href="{{ path('renaud_blog_admin_articles') }}"><p>Administration</p></a>
   				{% elseif is_granted('ROLE_USER') %}
-  					<a href="{{ path('renaud_blog_logout') }}"><p>Déconnexion</p></a>
+  					<p><a href="{{ path('renaud_blog_edit_profile', {'user': app.user.username }) }}">Profil</a>/<a href="{{ path('renaud_blog_logout') }}">Déconnexion</a></p>
   				{% else %}
 					<a href="{{ path('renaud_blog_login') }}"><p>Connexion</p></a>
   				{% endif %}
