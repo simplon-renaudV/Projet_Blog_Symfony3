@@ -2,6 +2,14 @@
 
 {% block body %}
 
+	{% for flash_message in app.session.flashBag.all %}
+    	{% for flash in flash_message %}
+    		<div class="flash-notice">
+        		{{ flash }}
+    		</div>
+		{% endfor %}
+	{% endfor %}
+
 	{% for article in articles %}
 		<ul class="articles">
 			<li>

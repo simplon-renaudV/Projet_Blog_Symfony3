@@ -2,12 +2,6 @@
 
 {% block body %}
 
-	{% for flash_message in app.session.flashBag.get('registerOk') %}
-    	<div class="flash-notice">
-        	{{ flash_message }}
-    	</div>
-	{% endfor %}
-
 	{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
 	{{ form_widget(form) }}
 	{{ form_end(form) }}

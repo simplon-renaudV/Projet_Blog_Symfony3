@@ -105,14 +105,10 @@ class BlogController extends Controller {
 			$donnees->setDate(new \DateTime());
 			$donnees->setPublie(0);
 
-			// On récupère le service
 			$security = $this->get('security.token_storage');
 
-			// On récupère le token
 			$token = $security->getToken();
 
-			// Si la requête courante n'est pas derrière un pare-feu, $token est null
-			// Sinon, on récupère l'utilisateur
 			$user = $token->getUser();
 
 			$donnees->setAuteur($user->getUsername());

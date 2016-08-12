@@ -1,9 +1,0 @@
-{% extends "renaudBlogBundle:Blog:template.html.twig" %}
-
-{% block body %}
-	{% for flash_message in app.session.flashBag.get('removeOk') %}
-    	<div class="flash-notice">
-        	{{ flash_message }}
-    	</div>
-	{% endfor %}
-{% endblock %}
