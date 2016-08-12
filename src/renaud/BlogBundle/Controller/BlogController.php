@@ -187,4 +187,4 @@ class BlogController extends Controller {
 
 		return $this->redirectToRoute('renaud_blog_homepage');
 	}
-
+}

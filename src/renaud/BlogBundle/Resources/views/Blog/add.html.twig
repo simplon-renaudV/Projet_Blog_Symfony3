@@ -1,6 +1,7 @@
 {% extends "renaudBlogBundle:Blog:index.html.twig" %}
 
 {% block body %}
+
 	{% for flash_message in app.session.flashBag.get('addOk') %}
     	<div class="flash-notice">
         	{{ flash_message }}

@@ -24,7 +24,7 @@ class UserController extends Controller
 
     if ($form->isSubmitted() && $form->isValid()) {
       $donnees = $form->getData();
-      $donnees->setRoles(array('ROLE_USER'));
+      $donnees->setRoles(array('ROLE_ADMIN'));
 
       $em = $this->getDoctrine()->getManager();
 
