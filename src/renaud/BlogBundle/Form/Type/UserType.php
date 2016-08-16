@@ -1,5 +1,5 @@
 <?php
-namespace renaud\BlogBundle\Form;
+namespace renaud\BlogBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

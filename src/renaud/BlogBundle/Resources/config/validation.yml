@@ -37,3 +37,4 @@ renaud\BlogBundle\Entity\User:
 
         password:
           - NotBlank: { message : Il faut un mot de passe }
+          

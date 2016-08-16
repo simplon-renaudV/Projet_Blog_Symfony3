@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use renaud\BlogBundle\Entity\User;
-use renaud\BlogBundle\Form\UserType;
+use renaud\BlogBundle\Form\Type\UserType;
 
 class UserController extends Controller
 {
@@ -35,7 +35,7 @@ class UserController extends Controller
 
 		$avatar = $donnees->getAvatar();
 
-		if ($avatar != null) {
+		if ($avatar !== null) {
 			$fileName = md5(uniqid()).'.'.$avatar->guessExtension();
 			$avatar->move($this->getParameter('dossier_avatar'), $fileName);
 
@@ -97,7 +97,7 @@ class UserController extends Controller
 		if ($form->isSubmitted() && $form->isValid()) {
 			$donnees = $form->getData();
 		  
-			if ($donnees->getAvatar() == null) {
+			if ($donnees->getAvatar() === null) {
 				$user->setAvatar($avatar);
 			}
 			else {

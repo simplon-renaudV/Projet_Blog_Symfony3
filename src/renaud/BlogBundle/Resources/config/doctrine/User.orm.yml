@@ -42,3 +42,4 @@ renaud\BlogBundle\Entity\User:
         ArticleLu: 
             targetEntity: ArticleLu
             mappedBy: user
+            

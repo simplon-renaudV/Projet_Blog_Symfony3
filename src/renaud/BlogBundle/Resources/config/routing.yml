@@ -67,3 +67,4 @@ renaud_blog_change_role:
 renaud_blog_remove_user:
     path: /removeUser/{user}
     defaults: { _controller: renaudBlogBundle:User:removeUser }
+    

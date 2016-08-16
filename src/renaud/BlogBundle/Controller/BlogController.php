@@ -2,7 +2,7 @@
 
 namespace renaud\BlogBundle\Controller;
 
-use renaud\BlogBundle\Form\ArticleType;
+use renaud\BlogBundle\Form\Type\ArticleType;
 use renaud\BlogBundle\Entity\Article;
 use renaud\BlogBundle\Entity\ArticleLu;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,7 +46,7 @@ class BlogController extends Controller {
 
 		$user = $this->getUser();
 		
-		if ($user != null) {
+		if ($user !== null) {
 			$vus = $this->getDoctrine()->getRepository('renaudBlogBundle:ArticleLu')->findAll();
 		}
 		else {
@@ -74,7 +74,7 @@ class BlogController extends Controller {
 
 		$user = $this->get('security.token_storage')->getToken()->getUser();
  		
- 		if ($user != null) {
+ 		if ($user !== null) {
 	 		$articleLu->setArticle($article);
 	 		$articleLu->setUser($user);
 	 		$articleLu->setLu(true);
@@ -205,7 +205,7 @@ class BlogController extends Controller {
 		->getRepository('renaudBlogBundle:Article')
 		->find($id);
 
-		if ($article->getPublie() == true) {
+		if ($article->getPublie() === true) {
 			$article->setPublie(false);
 		}
 		else {
