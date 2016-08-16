@@ -22,3 +22,8 @@ renaud\BlogBundle\Entity\Article:
         publie:
             type: boolean
     lifecycleCallbacks: {  }
+
+    oneTomany:
+        ArticleLu: 
+            targetEntity: ArticleLu
+            mappedBy: article

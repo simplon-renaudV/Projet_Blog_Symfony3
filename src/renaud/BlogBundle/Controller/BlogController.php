@@ -8,6 +8,7 @@ use renaud\BlogBundle\Form\LoginType;
 use renaud\BlogBundle\Entity\Article;
 use renaud\BlogBundle\Entity\User;
 use renaud\BlogBundle\Entity\Login;
+use renaud\BlogBundle\Entity\ArticleLu;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -57,13 +58,26 @@ class BlogController extends Controller {
 
 		$session = $request->getSession();
 
+		$em = $this->getDoctrine()->getManager();
+
+		$articleLu = new ArticleLu();
+
 		$article = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
 		->find($id);
 
-		$articlesVus = $session->get('vus');
+		$user = $this->get('security.token_storage')->getToken()->getUser();
+ 		
+ 		$articleLu->setArticle($article);
+ 		$articleLu->setUser($user);
+ 		$articleLu->setLu(true);
+
+		/*$articlesVus = $session->get('vus');
 		$articlesVus[$id] = $id;
-		$session->set('vus', $articlesVus);
+		$session->set('vus', $articlesVus);*/
+
+		$em->persist($articleLu);
+		$em->flush();
 
 		return $this->render('renaudBlogBundle:Blog:view.html.twig', array('article' => $article));
 	}
@@ -106,9 +120,7 @@ class BlogController extends Controller {
 			$donnees->setPublie(0);
 
 			$security = $this->get('security.token_storage');
-
 			$token = $security->getToken();
-
 			$user = $token->getUser();
 
 			$donnees->setAuteur($user->getUsername());

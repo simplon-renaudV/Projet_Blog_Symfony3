@@ -3,11 +3,8 @@
 {% block body %}
 
 	<p><a href='{{ path('renaud_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></p>
-
 	<p><a href="{{ path('renaud_blog_liste_users') }}">Gerer utilisateurs</a></p>
-
 	<p><a href='{{ path('renaud_blog_logout') }}'>Se déconnecter</a></p><br/>
-
 	<p><a href='{{ path('renaud_blog_add_article') }}'>Ajouter un article</a></p><br/>
 
 	{% for article in articles %}

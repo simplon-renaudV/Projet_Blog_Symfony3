@@ -26,14 +26,13 @@ class UserController extends Controller
 
 	if ($form->isSubmitted() && $form->isValid()) {
 		$donnees = $form->getData();
-	 	$donnees->setRoles(array('ROLE_ADMIN'));
+	 	$donnees->setRoles(array('ROLE_USER'));
 
 		$em = $this->getDoctrine()->getManager();
 
 		$password = $donnees->getPassword();
 		$encoder = $this->container->get('security.password_encoder');
 		$encoded = $encoder->encodePassword($user, $password);
-
 		$user->setPassword($encoded);
 		$user->setSalt('');
 
@@ -61,14 +60,9 @@ class UserController extends Controller
 
 	public function loginAction(Request $request)
 	{
-		// Si le visiteur est déjà identifié, on le redirige vers l'accueil
 		if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
 			return $this->redirectToRoute('renaud_blog_homepage');
 		}
-
-		// Le service authentication_utils permet de récupérer le nom d'utilisateur
-		// et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
-		// (mauvais mot de passe par exemple)
 
 		$authenticationUtils = $this->get('security.authentication_utils');
 
@@ -86,11 +80,19 @@ class UserController extends Controller
 	 */
 	public function editProfileAction (Request $request, $user) {
 
+		$currentUser = $this->get('security.token_storage')->getToken()->getUser();
+	
+		if ($user != $currentUser->getUsername()) {
+			$this->addFlash('wrongUser', 'Accès interdit, ce n\'est pas votre compte');
+  			return $this->redirectToRoute('renaud_blog_homepage');
+		}
+
 		$session = $request->getSession();
 
 		$em = $this->getDoctrine()->getManager();
 		$user = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
 
+		$avatar = $user->getAvatar();
 		$user->setAvatar(null);
 
 		$form = $this->createForm(UserType::class, $user);
@@ -100,11 +102,21 @@ class UserController extends Controller
 		if ($form->isSubmitted() && $form->isValid()) {
 			$donnees = $form->getData();
 		  
+			if ($donnees->getAvatar() == null) {
+				$user->setAvatar($avatar);
+			}
+			else {
+				$avatar = $donnees->getAvatar();
+				$fileName = md5(uniqid()).'.'.$avatar->guessExtension();
+				$avatar->move($this->getParameter('dossier_avatar'), $fileName);
+				$donnees->setAvatar($fileName);
+			}
+
 			$password = $donnees->getPassword();
 			$encoder = $this->container->get('security.password_encoder');
 			$encoded = $encoder->encodePassword($user, $password);
-
 			$user->setPassword($encoded);
+
 			$em->persist($donnees);
 			$em->flush();
 
@@ -127,6 +139,12 @@ class UserController extends Controller
 		return $this->render('renaudBlogBundle:Blog:users.html.twig', array('users'=>$users));
 	}
 
+	// Modification du role d'un utilisateur
+	// *************************************
+
+	/**
+	 * @Security("has_role('ROLE_ADMIN')")
+	 */
 	public function changeRoleAction ($user) {
 		$em = $this->getDoctrine()->getManager();
 		$userTmp = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
@@ -142,5 +160,22 @@ class UserController extends Controller
 		$em->flush();
 
 		return $this->redirectToRoute('renaud_blog_liste_users');
+	}
+
+	// Suppression d'un utilisateur
+	// ****************************
+
+	/**
+	 * @Security("has_role('ROLE_ADMIN')")
+	 */
+	public function removeUserAction ($user) {
+		$em = $this->getDoctrine()->getManager();
+		$userTmp = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
+
+		$em->remove($userTmp);
+		$em->flush();
+	
+		$this->addFlash('removeUserOk', 'Utilisateur supprimé');
+		return $this->redirectToRoute('renaud_blog_homepage');
 	}
 }

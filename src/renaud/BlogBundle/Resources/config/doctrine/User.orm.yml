@@ -37,3 +37,9 @@ renaud\BlogBundle\Entity\User:
             type: array
         
     lifecycleCallbacks: {  }
+
+    oneTomany:
+        ArticleLu: 
+            targetEntity: ArticleLu
+            mappedBy: user
+            
