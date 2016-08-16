@@ -87,8 +87,6 @@ class UserController extends Controller
   			return $this->redirectToRoute('renaud_blog_homepage');
 		}
 
-		$session = $request->getSession();
-
 		$em = $this->getDoctrine()->getManager();
 		$user = $em->getRepository('renaudBlogBundle:User')->findOneByUsername($user);
 

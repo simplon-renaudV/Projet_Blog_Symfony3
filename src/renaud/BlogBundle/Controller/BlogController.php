@@ -22,13 +22,21 @@ class BlogController extends Controller {
 
 	public function indexAction (Request $request) {
 
-		$session = $request->getSession();
-
 		$articles = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
 		->findBy(array('publie'=>1), array('date'=>'DESC'), 4);
+
+		$user = $this->get('security.token_storage')->getToken()->getUser();
 		
-		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
+		if ($user != null) {
+			$vus = $this->getDoctrine()->getRepository('renaudBlogBundle:ArticleLu')->findAll();
+		}
+		else {
+			$vus=null;
+		}
+
+		//return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
+		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$vus));
 	}
 
 	// Liste de tout les articles publies
@@ -39,13 +47,20 @@ class BlogController extends Controller {
    	*/
 	public function listeArticlesAction (Request $request) {
 
-		$session = $request->getSession();
-
 		$articles = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
 		->findAll();
 
-		return $this->render('renaudBlogBundle:Blog:articles.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
+		$user = $this->getUser();
+		
+		if ($user != null) {
+			$vus = $this->getDoctrine()->getRepository('renaudBlogBundle:ArticleLu')->findAll();
+		}
+		else {
+			$vus=null;
+		}
+
+		return $this->render('renaudBlogBundle:Blog:articles.html.twig', array('articles' => $articles, 'vus'=>$vus));
 	}
 
 	// Affichage d'un seul article
@@ -55,8 +70,6 @@ class BlogController extends Controller {
    	* @Security("has_role('ROLE_USER')")
    	*/
 	public function viewAction ($id, Request $request) {
-
-		$session = $request->getSession();
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -68,16 +81,14 @@ class BlogController extends Controller {
 
 		$user = $this->get('security.token_storage')->getToken()->getUser();
  		
- 		$articleLu->setArticle($article);
- 		$articleLu->setUser($user);
- 		$articleLu->setLu(true);
+ 		if ($user != null) {
+	 		$articleLu->setArticle($article);
+	 		$articleLu->setUser($user);
+	 		$articleLu->setLu(true);
 
-		/*$articlesVus = $session->get('vus');
-		$articlesVus[$id] = $id;
-		$session->set('vus', $articlesVus);*/
-
-		$em->persist($articleLu);
-		$em->flush();
+			$em->persist($articleLu);
+			$em->flush();
+		}
 
 		return $this->render('renaudBlogBundle:Blog:view.html.twig', array('article' => $article));
 	}
@@ -89,7 +100,6 @@ class BlogController extends Controller {
    	* @Security("has_role('ROLE_ADMIN')")
    	*/
 	public function adminArticlesAction (Request $request) {
-		$session = $request->getSession();
 		
 		$articles = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
@@ -106,8 +116,6 @@ class BlogController extends Controller {
    	*/
 	public function addAction (Request $request) {
 	
-		$session = $request->getSession();
-
 		$article = new Article();
 
 		$form = $this->createForm(ArticleType::class, $article);
@@ -144,7 +152,6 @@ class BlogController extends Controller {
    	* @Security("has_role('ROLE_ADMIN')")
    	*/
     public function updateAction (Request $request, $id) {
-		$session = $request->getSession();
 
 		$em = $this->getDoctrine()->getManager();
     	$article = $em->getRepository('renaudBlogBundle:Article')->find($id);
@@ -178,7 +185,6 @@ class BlogController extends Controller {
    	* @Security("has_role('ROLE_ADMIN')")
    	*/
 	public function removeAction (Request $request, $id) {
-		$session = $request->getSession();
 
 		$article = $this->getDoctrine()
 		->getRepository('renaudBlogBundle:Article')
@@ -199,7 +205,6 @@ class BlogController extends Controller {
    	* @Security("has_role('ROLE_ADMIN')")
    	*/
 	public function publierAction (Request $request, $id) {
-		$session = $request->getSession();
 
 		$em = $this->getDoctrine()->getManager();
 

@@ -20,9 +20,8 @@ renaud\BlogBundle\Entity\ArticleLu:
             joinColumn:
                 name: article
                 referencedColumnName: id
-
         user:
-            targetEntity: user
+            targetEntity: User
             inversedBy: ArticleLu
             joinColumn:
                 name: user
