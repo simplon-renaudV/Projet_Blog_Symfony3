@@ -4,7 +4,6 @@ namespace renaud\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use renaud\BlogBundle\Entity\User;
 use renaud\BlogBundle\Form\UserType;
@@ -16,8 +15,6 @@ class UserController extends Controller
 
 	public function registerAction (Request $request) {
 	
-	$session = $request->getSession();
-
 	$user = new User();
 
 	$form = $this->createForm(UserType::class, $user);

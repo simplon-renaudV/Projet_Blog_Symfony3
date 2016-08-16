@@ -3,17 +3,11 @@
 namespace renaud\BlogBundle\Controller;
 
 use renaud\BlogBundle\Form\ArticleType;
-use renaud\BlogBundle\Form\UserType;
-use renaud\BlogBundle\Form\LoginType;
 use renaud\BlogBundle\Entity\Article;
-use renaud\BlogBundle\Entity\User;
-use renaud\BlogBundle\Entity\Login;
 use renaud\BlogBundle\Entity\ArticleLu;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Security\Core\Authentication\Token\Storage;
 
 class BlogController extends Controller {
 
@@ -28,14 +22,13 @@ class BlogController extends Controller {
 
 		$user = $this->get('security.token_storage')->getToken()->getUser();
 		
-		if ($user != null) {
+		if ($user !== null) {
 			$vus = $this->getDoctrine()->getRepository('renaudBlogBundle:ArticleLu')->findAll();
 		}
 		else {
 			$vus=null;
 		}
 
-		//return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$session->get('vus')));
 		return $this->render('renaudBlogBundle:Blog:index.html.twig', array('articles' => $articles, 'vus'=>$vus));
 	}
 
