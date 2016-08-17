@@ -27,4 +27,3 @@ renaud\BlogBundle\Entity\Article:
         ArticleLu: 
             targetEntity: ArticleLu
             mappedBy: article
-            

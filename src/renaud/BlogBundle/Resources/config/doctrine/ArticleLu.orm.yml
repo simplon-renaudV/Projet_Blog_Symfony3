@@ -26,4 +26,3 @@ renaud\BlogBundle\Entity\ArticleLu:
             joinColumn:
                 name: user
                 referencedColumnName: id
-                

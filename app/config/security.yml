@@ -32,4 +32,3 @@ security:
             logout:
                 path:       renaud_blog_logout
                 target:     /
-                
