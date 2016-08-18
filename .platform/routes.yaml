@@ -1,0 +1,6 @@
+# .platform/routes.yaml
+"http://{default}/":
+    type: upstream
+    # the first part should be your project name
+    upstream: 'Blog:php'
+
