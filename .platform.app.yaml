@@ -4,7 +4,7 @@
 # in the same project.
 
 # The name of this app. Must be unique within a project.
-name: Blog
+name: blog
 
 # The type of the application to build.
 type: php:5.6
