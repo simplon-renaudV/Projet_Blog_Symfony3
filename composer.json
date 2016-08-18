@@ -1,4 +1,5 @@
 {
+    "description": "Projet de blog pour la certification simplon.co",
     "name": "renaud/blog",
     "license": "proprietary",
     "type": "project",
