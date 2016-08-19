@@ -1,0 +1,16 @@
+{% extends "SimplonBlogBundle:Blog:template.html.twig" %}
+
+{% block body %}
+	<ul>
+	{% for user in users %}
+    	<li>username : {{ user.username }}</li>
+    	<li>roles : 
+    	{% for role in user.roles %}
+			{{ role }} 
+ 		{% endfor %}
+ 		</li>
+   		<li><a href="{{ path('Simplon_blog_change_role', {'user': user.username }) }}">Changer Role</a></li>
+   		<li><a href="{{ path('Simplon_blog_remove_user', {'user': user.username }) }}">Supprimer l'utilisateur</a></li><br/>
+	{% endfor %}
+	</ul>
+{% endblock %}

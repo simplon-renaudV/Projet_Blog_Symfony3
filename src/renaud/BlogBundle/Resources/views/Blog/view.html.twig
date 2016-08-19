@@ -1,9 +1,0 @@
-{% extends "renaudBlogBundle:Blog:index.html.twig" %}
-
-{% block body %}
-	<p> Article N° {{ article.id }} </p>
-	<p> Titre : {{ article.titre }} </p>
-	<p> Contenu : {{ article.contenu }} </p>
-	<p> Auteur : {{ article.auteur }} </p>
-	<p> Date : {{ article.date | date('d-m-Y') }} </p>
-{% endblock %}

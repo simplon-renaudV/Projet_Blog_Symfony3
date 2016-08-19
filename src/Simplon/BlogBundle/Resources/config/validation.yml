@@ -1,0 +1,39 @@
+Simplon\BlogBundle\Entity\Article:
+    properties:
+        titre: 
+          - NotBlank: { message: "Le titre est obligatoire" }
+          - Length: 
+              max: 50
+              maxMessage: "Le titre ne doit pas dépasser {{ limit }} caractères" 
+        
+        contenu:
+          - NotBlank: { message: "Le contenu est obligatoire" }
+
+Simplon\BlogBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: mail
+
+    properties:
+        mail:
+          - NotBlank: { message : Email obligatoire }
+          - Email:
+              message: Email non valide
+
+        nom:
+          - NotBlank: { message : Le nom est obligatoire }
+          - Length:
+              min: 5
+              max: 30
+              maxMessage: "Le nom ne doit pas dépasser {{ limit }} caractères"
+              minMessage: "Le nom doit contenir {{ limit }} caractères minimum"
+
+        prenom:
+          - NotBlank: { message : Le prenom est obligatoire }
+          - Length:
+              min: 3
+              max: 30
+              maxMessage: "Le prénom ne doit pas dépasser {{ limit }} caractères"
+              minMessage: "Le prénom doit contenir {{ limit }} caractères minimum"
+
+        password:
+          - NotBlank: { message : Il faut un mot de passe }

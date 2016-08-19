@@ -1,0 +1,69 @@
+Simplon_blog_homepage:
+    path:     /
+    defaults: { _controller: SimplonBlogBundle:Blog:index }
+
+Simplon_blog_listeArticles:
+    path:     /articles
+    defaults: { _controller: SimplonBlogBundle:Blog:listeArticles }
+
+Simplon_blog_admin_articles:
+    path:     /adminArticles
+    defaults: { _controller: SimplonBlogBundle:Blog:adminArticles }
+
+Simplon_blog_add_article:
+    path:     /add
+    defaults: { _controller: SimplonBlogBundle:Blog:add }
+
+Simplon_blog_register:
+    path:     /register
+    defaults: { _controller: SimplonBlogBundle:User:register }
+
+Simplon_blog_view_article:
+    path:     /view/{id}
+    defaults: { _controller: SimplonBlogBundle:Blog:view }
+    requirements:
+        id: \d+
+
+Simplon_blog_remove_article:
+    path:   /remove/{id}
+    defaults: { _controller: SimplonBlogBundle:Blog:remove }
+    requirements:
+        id: \d+
+
+Simplon_blog_update_article:
+    path:  /update/{id}
+    defaults: { _controller: SimplonBlogBundle:Blog:update }
+    requirements:
+        id: \d+
+
+Simplon_blog_publier_article:
+    path: /publier/{id}
+    defaults: { _controller: SimplonBlogBundle:Blog:publier }
+    requirements:
+        id: \d+
+
+Simplon_blog_edit_profile:
+    path: /profil/{user}
+    defaults: { _controller: SimplonBlogBundle:User:editProfile }
+
+Simplon_blog_login:
+    path: /login
+    defaults: { _controller: SimplonBlogBundle:User:login }
+
+Simplon_blog_login_check:
+    path: /login_check
+
+Simplon_blog_logout:
+    path: /logout
+
+Simplon_blog_liste_users:
+    path: /users
+    defaults: { _controller: SimplonBlogBundle:User:listeUsers }
+
+Simplon_blog_change_role:
+    path: /changeRole/{user}
+    defaults: { _controller: SimplonBlogBundle:User:changeRole }
+
+Simplon_blog_remove_user:
+    path: /removeUser/{user}
+    defaults: { _controller: SimplonBlogBundle:User:removeUser }

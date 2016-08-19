@@ -1,0 +1,29 @@
+Simplon\BlogBundle\Entity\Article:
+    type: entity
+    table: null
+    repositoryClass: Simplon\BlogBundle\Repository\ArticleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titre:
+            type: string
+            length: '50'
+        auteur:
+            type: string
+            length: '30'
+        contenu:
+            type: text
+        date:
+            type: datetime
+        publie:
+            type: boolean
+    lifecycleCallbacks: {  }
+
+    oneTomany:
+        ArticleLu: 
+            targetEntity: ArticleLu
+            mappedBy: article

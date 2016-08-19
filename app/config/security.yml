@@ -1,6 +1,6 @@
 security:
     encoders:
-        renaud\BlogBundle\Entity\User: 
+        Simplon\BlogBundle\Entity\User: 
             algorithm: bcrypt
             cost: 12
 
@@ -10,7 +10,7 @@ security:
     providers:
         main:
             entity:
-                class: renaud\BlogBundle\Entity\User
+                class: Simplon\BlogBundle\Entity\User
                 property: username
 
     firewalls:
@@ -27,8 +27,8 @@ security:
             anonymous:    true
             provider:     main
             form_login:
-                login_path: renaud_blog_login
-                check_path: renaud_blog_login_check
+                login_path: Simplon_blog_login
+                check_path: Simplon_blog_login_check
             logout:
-                path:       renaud_blog_logout
+                path:       Simplon_blog_logout
                 target:     /
