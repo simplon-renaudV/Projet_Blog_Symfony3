@@ -1,5 +1,0 @@
-# .platform/services.yaml
-mysql:
-    type: mysql
-    disk: 2048
-
