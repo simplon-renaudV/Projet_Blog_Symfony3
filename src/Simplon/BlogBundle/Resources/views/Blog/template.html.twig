@@ -3,41 +3,42 @@
 <head>
 	<meta charset="utf-8">
 	<title>{% block title %}Accueil{% endblock %} - Blog</title>
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/fonts/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 </head>
 <body>
-<header >
-	{%  block nav %}{% include '::nav.html.twig' %}  <!-- navigation start -->
-		<div class="menu btn-nav">
-			<a href="#"></a>
-		</div>{% endblock %}
+	{% block header %}
+		<header >
+			{%  block nav %}
+				{% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
+			{% endblock %}
 
-</header>
+		</header>
+	{% endblock %}
 
-{% block body %}
-	<main class="flex-container">
+	{% block page %}
 
+		<main class="flex-container">
 
-
-		<div class="flex-item">
-			<div class="flex-container">
-				{% block slogan %}
-					<div class="slogan"><p>Votre blog<br>en<br>3 clics !</p></div>
-				{% endblock %}
-				<p class="lettre animated pulse infinite">blog</p>
+			<div class="flex-item">
+				<div class="flex-container">
+					{% block slogan %}
+						<div class="slogan"><p>Votre blog<br>en<br>3 clics !</p></div>
+					{% endblock %}
+					<p class="lettre animated pulse infinite">blog</p>
+				</div>
 			</div>
-		</div>
-	</main>
-{% endblock %}
+		</main>
 
 
-{% block javascripts %}
-	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/main.js') }}"></script>
-{% endblock %}
+	{% endblock %} <!-- End page -->
+
+
+	{% block javascripts %}
+		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/main.js') }}"></script>
+	{% endblock %} <!-- End javascripts -->
 </body>
 </html>

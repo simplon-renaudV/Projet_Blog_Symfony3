@@ -1,6 +1,8 @@
 <nav  id="navigation">
-    {% block logo %}<a href="{{ path('Simplon_blog_homepage') }}"><div class="logo animated bounceIn">blog</div></a>
+    {% block logo %}
+        <a href="{{ path('Simplon_blog_homepage') }}"><div class="logo animated bounceIn">blog</div></a>
     {% endblock %}
+
     <div class="outer-menu">
         <input class="checkbox-toggle" type="checkbox" />
         <div class="hamburger">
@@ -13,8 +15,8 @@
                         {% block login %}
                             <li><a href="{{ path('Simplon_blog_homepage') }}">Accueil</a></li>
                             <li> <a href="{{ path('Simplon_blog_listeArticles') }}">Blog</a></li>
-                            {% if app.user == null %}
 
+                            {% if app.user == null %} <!-- Condition d'affichage : mode administration/ou mode première connexion-->
                                 <li><a href="{{ path('Simplon_blog_login') }}">Connexion</a></li>
                             {% else %}
                                 <li><a href="{{ path('Simplon_blog_admin_articles') }}">Administration</a></li>

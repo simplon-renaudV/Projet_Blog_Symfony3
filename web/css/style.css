@@ -85,64 +85,12 @@ ul{
 li {
     list-style: none;
 }
+
 /****************************
 	      HEADER
 ****************************/
-.logo{
-    position: absolute;
-    top:5%;
-    left:10%;
-    font-size: 1.5em;
-    font-family: 'ariasolid-Regular';
-    margin: auto;
-    color: #252433;
-    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
-    z-index: 900;
-}
-.slogan{
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 3%;
-    width:200px;
-    margin:15% auto;
-    text-align:center;
-    transform: rotate(-5deg);
-    background-image: url(../images/bulle.png);
-    background-repeat: no-repeat;
-    -webkit-background-size:contain;
-    background-size:contain;
-}
-.slogan p{
-    margin-top: 40px;
-    color: #C8C5F2;
-    line-height:1;
-    font-size:1.5rem;
-    font-family: 'IndieFlower';
-    letter-spacing:1px;
-}
-.slogan:first-letter{
-    font-size:1.2em;
-}
 
-.lettre{
-    font-size: 3em;
-    font-family:'ariasolid-Regular';
-    margin:auto;
-    color: #252433;
-    transform:translateX(-15px);
-    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
-}
-.lettre p{
-    position: relative;
-    justify-content: center;
-}
-
-/****************************
-	      MENU
-****************************/
-#navigation {
+header {
     position: fixed;
     top: 0;
     left: 0;
@@ -152,7 +100,21 @@ li {
     z-index: 100;
 }
 
+.logo{
+    position: absolute;
+    top: 0;
+    left:10%;
+    font-size: 1.5em;
+    font-family: 'ariasolid-Regular';
+    margin:1% auto;
+    color: #252433;
+    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+    z-index: 900;
+}
 
+/****************************
+	      MENU
+****************************/
 
 .outer-menu {
     position: fixed;
@@ -390,8 +352,53 @@ li {
     transition: width 0.4s ease;
 }
 
+
 /**********************************************
-                  FORM LOGIN
+                  ACCUEIL
+**********************************************/
+.slogan{
+    position: absolute;
+    top: 20vh;
+    bottom: 0;
+    left: 0;
+    right: 3%;
+    width:180px;
+    margin: 0 auto;
+    text-align:center;
+    transform: rotate(-5deg);
+    background-image: url(../images/bulle.png);
+    background-repeat: no-repeat;
+    -webkit-background-size:contain;
+    background-size:contain;
+}
+.slogan p{
+    margin-top: 30px;
+    color: #C8C5F2;
+    line-height:1.2;
+    font-size:1.2rem;
+    font-family: 'IndieFlower';
+    letter-spacing:1px;
+}
+.slogan:first-letter{
+    font-size:1.2em;
+}
+
+.lettre{
+    font-size: 3em;
+    font-family:'ariasolid-Regular';
+    margin:auto;
+    color: #252433;
+    transform:translateX(-15px);
+    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+}
+.lettre p{
+    position: relative;
+    justify-content: center;
+}
+
+
+/**********************************************
+                  FORMULAIRE LOGIN
 **********************************************/
 .login{
     width: 320px;
