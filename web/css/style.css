@@ -1,84 +1,587 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+@font-face {
+    font-family: ariasolid-Regular;
+    src: url(../fonts/ariasolid-Regular.ttf);
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+@font-face {
+    font-family: indieFlower;
+    src: url(../fonts/IndieFlower.ttf);
 }
-body {
-	line-height: 1;
+@font-face {
+    font-family: classie;
+    src: url(../fonts/classie.ttf);
 }
-ol, ul {
-	list-style: none;
+body, html {
+    height: 100%;
 }
-blockquote, q {
-	quotes: none;
+body{
+    background: #f5f5f5; /* Old browsers */
+    background: -moz-linear-gradient(top, #f5f5f5 0%, #ffffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #f5f5f5 0%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #f5f5f5 0%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    background-repeat: no-repeat;
+    font-family: classie;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+.hidden {
+    display: none;
 }
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+.container{
+    display: flex-container;
+}
+.flex-container {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-box-flex-direction: column;
+    -moz-box-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height:100%;
 }
 
-/* FIN DU RESET CSS */
+.flex-item {
+    margin: auto;
+    height:200px;
+    width:200px;
+}
+.flex-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+* {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+a,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
+    text-decoration: none;
+}
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    font-size: 10em;
+    text-align: center;
+    color: #252433;
+}
+ul{
 
-header {
-	background-color: #E8AE94;
-	width: 100%;
-	height: 50px;
+    margin-left: 0!important;
+}
+li {
+    list-style: none;
+}
+/****************************
+	      HEADER
+****************************/
+.logo{
+    position: absolute;
+    top:5%;
+    left:10%;
+    font-size: 1.5em;
+    font-family: 'ariasolid-Regular';
+    margin: auto;
+    color: #252433;
+    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+    z-index: 900;
+}
+.slogan{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 3%;
+    width:200px;
+    margin:15% auto;
+    text-align:center;
+    transform: rotate(-5deg);
+    background-image: url(../images/bulle.png);
+    background-repeat: no-repeat;
+    -webkit-background-size:contain;
+    background-size:contain;
+}
+.slogan p{
+    margin-top: 40px;
+    color: #C8C5F2;
+    line-height:1;
+    font-size:1.5rem;
+    font-family: 'IndieFlower';
+    letter-spacing:1px;
+}
+.slogan:first-letter{
+    font-size:1.2em;
 }
 
-.menu {
-	width: 33%;
-	float: left;	
-	text-align: center;
-	padding-top: 10px;
+.lettre{
+    font-size: 3em;
+    font-family:'ariasolid-Regular';
+    margin:auto;
+    color: #252433;
+    transform:translateX(-15px);
+    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+}
+.lettre p{
+    position: relative;
+    justify-content: center;
 }
 
-body {
-	width: 100%;
-}
-.articles li {
-	text-align: justify;
-	width: 30%;
-	float: left;
-	border: 2px solid black;
-	margin: 10px 9.5%; 
+/****************************
+	      MENU
+****************************/
+#navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: #fff;
+    z-index: 100;
 }
 
+
+
+.outer-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.outer-menu .checkbox-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+    color: #fff;
+}
+.outer-menu .checkbox-toggle:checked + .hamburger > div {
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    background-color: #fff;
+}
+.outer-menu .checkbox-toggle:checked + .hamburger > div:before,
+.outer-menu .checkbox-toggle:checked + .hamburger > div:after {
+    top: 0;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.outer-menu .checkbox-toggle:checked + .hamburger > div:after {
+    opacity: 0;
+}
+.outer-menu .checkbox-toggle:checked ~ .menu {
+    pointer-events: auto;
+    visibility: visible;
+}
+.outer-menu .checkbox-toggle:checked ~ .menu > div {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition-duration: .75s;
+    transition-duration: .75s;
+}
+.outer-menu .checkbox-toggle:checked ~ .menu > div > div {
+    opacity: 1;
+    -webkit-transition: opacity 0.4s ease 0.4s;
+    transition: opacity 0.4s ease 0.4s;
+}
+
+.outer-menu .checkbox-toggle:checked:hover + .hamburger > div {
+    -webkit-transform: rotate(225deg);
+    transform: rotate(225deg);
+}
+.outer-menu .hamburger {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    z-index: 1;
+    width: 60px;
+    height: 60px;
+    padding: .5em 1em;
+    border-radius: 0 0.12em 0.12em 0;
+    cursor: pointer;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.outer-menu .hamburger > div {
+    position: relative;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    width: 100%;
+    height: 2px;
+    background: #252433;
+    -webkit-transition: all 0.9s ease;
+    transition: all 0.9s ease;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.outer-menu .hamburger > div:before,
+.outer-menu .hamburger > div:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: inherit;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+.outer-menu .hamburger > div:after {
+    top: 10px;
+}
+.outer-menu .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    visibility: hidden;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    outline: 1px solid transparent;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.outer-menu .menu > div {
+    width: 200vw;
+    height: 200vw;
+    color: #C8C5F2;
+    background: #252433;
+    border-radius: 50%;
+    border: solid 4px #C8C5F2;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.outer-menu .menu > div > div {
+    text-align: center;
+    max-width: 90vw;
+    max-height: 100vh;
+    opacity: 0;
+    -webkit-transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease;
+    overflow-y: auto;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.outer-menu .menu > div > div > ul {
+    list-style: none;
+    padding: 0 1em;
+    margin: 0;
+    display: block;
+    max-height: 100vh;
+}
+.outer-menu .menu > div > div > ul > li {
+    padding: 0;
+    margin: 1em;
+    font-size: 24px;
+    display: block;
+}
+.outer-menu .menu > div > div > ul > li > a {
+    position: relative;
+    display: inline;
+    cursor: pointer;
+    -webkit-transition: color 0.4s ease;
+    transition: color 0.4s ease;
+}
+.outer-menu .menu > div > div > ul > li > a:hover {
+    color: #fff;
+}
+.outer-menu .menu > div > div > ul > li > a:hover:after {
+    width: 100%;
+}
+.outer-menu .menu > div > div > ul > li > a:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    bottom: -0.15em;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    -webkit-transition: width 0.4s ease;
+    transition: width 0.4s ease;
+}
+
+/**********************************************
+                  FORM LOGIN
+**********************************************/
+.login{
+    width: 320px;
+    height: 320px;
+    padding:45px;
+    text-align: center;
+    color: #C8C5F2;
+    border-radius: 50%;
+    background-color: #252433;
+
+}
+.login h2{
+    text-align: center;
+    margin-top: inherit;
+}
+.login_form{
+    margin:auto;
+}
+.champ{
+    margin:10px auto;
+}
+input .login{
+    width:100%;
+    text-align: left;
+}
+form {
+    margin-top: 5px;
+}
+.form_input{
+    width: 90%;
+    background-color: inherit;
+    border-bottom: 3px solid #C8C5F2;
+    color: #9E9CC2;
+    font-weight: 0;
+    text-align: left;
+    border-top: inherit;
+    border-right: inherit;
+    border-left: inherit;
+}
+#login_Creer{
+    width: 89px;
+    height: 30px;
+    line-height: 2;
+    text-align: center;
+    color: #252433;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #C8C5F2;
+}
+.login p {
+    font-size: 0.8em;
+}
+.login a {
+    margin-top: 30px;
+    padding: 2px;
+
+}
+.login p:first-of-type{
+    margin: 20px auto 0 auto;
+}
+.inscription, #user_Creer {
+    width: auto;
+    margin-top: 10px;
+    padding:3px 10px;
+    color: #C8C5F2;
+    border: 1px solid #C8C5F2;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+#user_Avatar{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+#user_Avatar + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+#user_Avatar:focus + label,
+#user_Avatar + label:hover {
+    background-color: red;
+}
+#user_Avatar + label {
+    cursor: pointer; /* "hand" cursor */
+}
+.avatar{
+    color: red ;
+}
+.flash-notice {
+    color: rgba(255, 61, 137, 1);
+    -webkit-animation: flash 2s infinite; /* Chrome, Safari, Opera */
+    animation: flash 2s infinite;
+
+}
+
+.titre2 {
+    margin: inherit;
+}
+
+
+/**********************************************
+                   PAGE ARTICLES
+**********************************************/
+.page {
+    width: 100%;
+    height: 100%;
+    margin-top: 10vh;
+    padding: 20px 0;
+    text-align: center;
+}
+.liste_articles {
+    width: 100%;
+    height: auto;
+    margin: 100px auto;
+    color: #252433;
+
+}
+.article {
+    width: 100%;
+    padding: 20px;
+    margin: 0!important;
+    color: #252433;
+    background-color: #fff;
+}
+.ombre{
+    width: 100%;
+    height: 20px;
+    background-image: url(../images/ombre.png);
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+}.header-article{
+     width: 100%;
+     height: 100%;
+     padding:10px;
+     color: #fff;
+     background-color: #252433;
+ }
+.date_header{
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    float: left;
+    vertical-align: top;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: rgba(255, 61, 137, 1);
+
+}
 .titre {
-	font-size: 20px;
-	margin-bottom: 5px;
+    width: 70%;
+    display: inline-block;
+    float: right;
+    vertical-align: top;
+    color: #babdff;
+}
+@media screen and (min-width: 640px) and (max-width: 2000px) {
+    .liste_articles {
+        width: 50%;
+    }
+}
+/**********************************************
+                   ANIMATIONS
+**********************************************/
+.rotating{
+    -webkit-animation: rotating 1s; /* Chrome, Safari, Opera */
+    animation: rotating 1s;
+
+}
+.fadeIn{
+    -webkit-animation: fadeIn 10s; /* Chrome, Safari, Opera */
+    animation: fadeIn 10s;
+
 }
 
-footer {
-	clear: both;
-	text-align: center;
+@keyframes rotating {
+    from{
+        transform: translate(-1000px,0) rotate(0deg);
+    }
+    to{
+        transform: translate(0,0) rotate(360deg);
+    }
 }
