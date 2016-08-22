@@ -1,0 +1,29 @@
+<nav  id="navigation">
+    {% block logo %}<a href="{{ path('Simplon_blog_homepage') }}"><div class="logo animated bounceIn">blog</div></a>
+    {% endblock %}
+    <div class="outer-menu">
+        <input class="checkbox-toggle" type="checkbox" />
+        <div class="hamburger">
+            <div></div>
+        </div>
+        <div class="menu">
+            <div>
+                <div>
+                    <ul>
+                        {% block login %}
+                            <li><a href="{{ path('Simplon_blog_homepage') }}">Accueil</a></li>
+                            <li> <a href="{{ path('Simplon_blog_listeArticles') }}">Blog</a></li>
+                            {% if app.user == null %}
+
+                                <li><a href="{{ path('Simplon_blog_login') }}">Connexion</a></li>
+                            {% else %}
+                                <li><a href="{{ path('Simplon_blog_admin_articles') }}">Administration</a></li>
+                            {% endif %}
+
+                        {% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
