@@ -1,15 +1,17 @@
-{% extends "SimplonBlogBundle:Blog:index.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block body %}
-
+{% block page %}
+	<div style="color:#fff;" >
 	<p><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></p>
 	<p><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></p>
 	<p><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></p><br/>
 	<p><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></p><br/>
 
 	{% for article in articles %}
-		<p>Id : {{article.id}}</p>
+		<p>Article n°: {{article.id}}</p>
 		<p>Titre : {{article.titre}}</p>
+		<p>Article : {{article.contenu}}</p>
+		<p>Auteur : {{article.auteur}}</p>
 
 		{% if article.publie == false %}
 			<p><a href='{{ path('Simplon_blog_publier_article', {'id': article.id}) }}'>Publier cet article</a></p>
@@ -20,4 +22,6 @@
 		<p><a href='{{ path('Simplon_blog_update_article', {'id': article.id}) }}' >Modifier</a></p>
 		<p><a href='{{ path('Simplon_blog_remove_article', {'id': article.id}) }}' >Supprimer</a></p><br/>
 	{% endfor %}
+</div>
+
 {% endblock %}

@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Accueil{% endblock %} - Blog</title>
+    <link rel="stylesheet" href="{{ asset('css/fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+</head>
+<body>
+{% block header %}
+    <header >
+        {%  block nav %}
+            {% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
+        {% endblock %}
+
+    </header>
+{% endblock %}
+<p>Accueil</p>
+<div class="page">
+    {% block page %}
+
+        <main class="flex-conta">
+
+            <div class="flex-item">
+
+
+                    <p class="lettre animated pulse infinite">blog</p>
+
+                <div class="nav_intro">
+                    <a href="{{ path('Simplon_blog_register') }}"><p class="btn-inscription">S'inscrire</p></a>
+                    <a href="{{ path('Simplon_blog_homepage') }}"><p>Visiter</p></a>
+                </div>
+
+            </div>
+
+
+        </main>
+
+    {% endblock %} <!-- End page -->
+</div>
+
+
+
+
+{% block javascripts %}
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %} <!-- End javascripts -->
+</body>
 </html>

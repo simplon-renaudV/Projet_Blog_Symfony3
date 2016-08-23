@@ -4,9 +4,10 @@ namespace Simplon\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Simplon\BlogBundle\Entity\User;
+use Simplon\BlogBundle\Entity\Login;
 use Simplon\BlogBundle\Form\Type\UserType;
+use Simplon\BlogBundle\Form\Type\LoginType;
 
 class UserController extends Controller
 {
@@ -46,7 +47,7 @@ class UserController extends Controller
 		$em->flush();
 
 		$this->addFlash('registerOk', 'Utilisateur bien enregistré');
-		return $this->redirectToRoute('Simplon_blog_homepage');
+		return $this->redirectToRoute('Simplon_blog_login');
 	}   
 
 		return $this->render('SimplonBlogBundle:Blog:register.html.twig', array('form' => $form->createView()));
@@ -58,14 +59,21 @@ class UserController extends Controller
 	public function loginAction(Request $request)
 	{
 		if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-			return $this->redirectToRoute('Simplon_blog_homepage');
+			return $this->redirectToRoute('Simplon_blog_listeArticles');
 		}
 
 		$authenticationUtils = $this->get('security.authentication_utils');
+        $login = new Login();
 
-		return $this->render('SimplonBlogBundle:Blog:login.html.twig', array(
+        $form = $this->createForm(LoginType::class, $login);
+
+        $form->handleRequest($request);
+
+
+        return $this->render('SimplonBlogBundle:Blog:login.html.twig', array(
 		  'last_username' => $authenticationUtils->getLastUsername(),
 		  'error'         => $authenticationUtils->getLastAuthenticationError(),
+            'form' => $form->createView()
 		));
 	}
 

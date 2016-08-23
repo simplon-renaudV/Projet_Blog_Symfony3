@@ -29,6 +29,7 @@ security:
             form_login:
                 login_path: Simplon_blog_login
                 check_path: Simplon_blog_login_check
+                default_target_path: /articles
             logout:
                 path:       Simplon_blog_logout
                 target:     /

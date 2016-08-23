@@ -19,21 +19,5 @@ Simplon\BlogBundle\Entity\User:
           - Email:
               message: Email non valide
 
-        nom:
-          - NotBlank: { message : Le nom est obligatoire }
-          - Length:
-              min: 5
-              max: 30
-              maxMessage: "Le nom ne doit pas dépasser {{ limit }} caractères"
-              minMessage: "Le nom doit contenir {{ limit }} caractères minimum"
-
-        prenom:
-          - NotBlank: { message : Le prenom est obligatoire }
-          - Length:
-              min: 3
-              max: 30
-              maxMessage: "Le prénom ne doit pas dépasser {{ limit }} caractères"
-              minMessage: "Le prénom doit contenir {{ limit }} caractères minimum"
-
         password:
           - NotBlank: { message : Il faut un mot de passe }

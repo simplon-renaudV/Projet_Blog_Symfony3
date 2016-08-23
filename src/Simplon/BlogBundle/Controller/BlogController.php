@@ -10,8 +10,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class BlogController extends Controller {
+    // Page d'accueil
+    // **************
 
-	// Page d'accueil
+    public function accueilAction (Request $request) {
+
+        return $this->render('base.html.twig');
+    }
+
+
+	// Page du blog
 	// **************
 
 	public function indexAction (Request $request) {
