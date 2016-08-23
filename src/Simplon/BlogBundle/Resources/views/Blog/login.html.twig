@@ -1,20 +1,41 @@
-{% extends "SimplonBlogBundle:Blog:template.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block body %}
+{% block page %}
+    {% for flash_message in app.session.flashBag.get('registerOk') %}
+        <div class="alert-danger">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
 
-  {% if error %}
-    <div class="alert alert-danger">{{ error.message }}</div>
-  {% endif %}
+  <section class=" flex-container rotating ">
+    <div class="login flex-item">
 
-  <form action="{{ path('Simplon_blog_login_check') }}" method="post">
-    <label for="username">Login :</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
-    <label for="password">Mot de passe :</label>
-    <input type="password" id="password" name="_password" />
-    <br />
-    <input type="submit" value="Connexion" />
-  </form>
+      <h2 class="fadeInUp">Se connecter</h2>
 
-    <p>Si vous n'avez pas de compte utilisateur c'est par <a href="{{ path('Simplon_blog_register') }}">ici</a></p>  
+
+      <div class="login_form fadeInUp">
+
+        {% if error %}
+          <div class="alert alert-danger">{{ error.message }}</div>
+        {% endif %}
+
+        <form action="{{ path('Simplon_blog_login_check') }}" method="post">
+<div class="champ">
+  <input class="form_input" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Pseudo" />
+</div>
+
+<div class="champ">
+  <input class="form_input" type="password" id="password" name="_password" placeholder="Mot de passe"  />
+</div>
+
+          <br />
+          <input type="submit" value="Login" class="btn_login"/>
+        </form>
+
+        <p >Pas de compte? Inscris-toi! </p><a href="{{ path('Simplon_blog_register') }}"><input type="button" value="S'incrire" class="inscription"></a></input>
+      </div>
+    </div>
+  </section>
 
 {% endblock %}
+

@@ -8,40 +8,39 @@ namespace Simplon\BlogBundle\Entity;
 class Login
 {
     /**
-     * @var string
+     * @var username
      */
-    private $mail;
+    private $username;
 
     /**
      * @var string
      */
     private $password;
 
+
     /**
-     * Set mail
+     * Set username
      *
-     * @param string $mail
+     * @param  string $username
      *
      * @return User
      */
-    public function setMail($mail)
+    public function setUsername($username)
     {
-        $this->mail = $mail;
-
-        return $this;
+        $this->username = $username;
     }
 
     /**
-     * Get mail
+     * Get username
      *
      * @return string
      */
-    public function getMail()
+    public function getUsername()
     {
-        return $this->mail;
+        return $this->username;
     }
 
- 
+
     /**
      * Set password
      *

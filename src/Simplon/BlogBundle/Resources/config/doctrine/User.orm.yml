@@ -13,12 +13,7 @@ Simplon\BlogBundle\Entity\User:
             type: string
             length: '50'
             unique: true
-        nom:
-            type: string
-            length: '30'
-        prenom:
-            type: string
-            length: '30'
+
         avatar:
             type: string
             length: 255

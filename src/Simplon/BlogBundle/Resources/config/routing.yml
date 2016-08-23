@@ -1,5 +1,8 @@
-Simplon_blog_homepage:
+Simplon_blog_accueil:
     path:     /
+    defaults: { _controller: SimplonBlogBundle:Blog:accueil }
+Simplon_blog_homepage:
+    path:     /blog
     defaults: { _controller: SimplonBlogBundle:Blog:index }
 
 Simplon_blog_listeArticles:

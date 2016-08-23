@@ -1,9 +1,39 @@
-{% extends "SimplonBlogBundle:Blog:index.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block body %}
+{% block page %}
 
-	{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
-	{{ form_widget(form) }}
-	{{ form_end(form) }}
+	<section class=" flex-container animated bounceInDown ">
+		<div class="login flex-item">
+			<h3 class="titre2">S'inscrire</h3>
+			<div class="login_form">
 
+				{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+				<div class="champ">
+					{{ form_errors(form.Mail) }}
+					{{ form_widget(form.Mail, {'attr': {'class': 'form_input'}}) }}
+				</div>
+				<div class="champ">
+					{{ form_errors(form.Username
+					) }}
+					{{ form_widget(form.Username
+					, {'attr': {'class': 'form_input'}}) }}
+				</div>
+				<div class="champ">
+					{{ form_errors(form.Password) }}
+					{{ form_widget(form.Password.first, {'attr': {'class': 'form_input'}}) }}
+					<div class="champ">
+						{{ form_errors(form.Password) }}
+						{{ form_widget(form.Password.second, {'attr': {'class': 'form_input'}}) }}
+					</div>
+				</div>
+				<div class="champ">
+					{{ form_errors(form.Avatar, {'attr': {'class': 'avatar'}}) }}
+				</div>
+				{{ form_end(form) }}
+
+
+
+			</div>
+		</div>
+	</section>
 {% endblock %}

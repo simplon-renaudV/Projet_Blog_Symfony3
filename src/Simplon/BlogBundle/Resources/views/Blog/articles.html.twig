@@ -1,25 +1,30 @@
-{% extends "SimplonBlogBundle:Blog:template.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block body %}
-	<ul class="articles">
-	{% for article in articles %}
-		{% if article.publie %} 
-			<li>
-				<a href="{{ path('Simplon_blog_view_article',{'id': article.id}) }}"><p class="titre">{{ article.titre }}</p></a>
-				<p>{{ article.contenu }}</p>
-				<p>{{ article.auteur }}</p>
-				<p>Dernière modification le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p>
+{% block page %}
 
-				{% if app.user != null %}
-					{% for articleVu in vus %}
-						{% if articleVu.article.id == article.id and articleVu.user.id == app.user.id %}
-							<p>article déjà lu</p>
+		<div class="liste_articles flex-container">
+			{% for article in articles %}
+				<div class="header-article">
+					<h2 class="date_header"><p>{{ article.date | date('d-M') }}<br>{{ article.date | date('Y') }}</p> </h2>
+					<a href="{{ path('Simplon_blog_view_article',{'id': article.id}) }}"><div class="titre"><h2>{{ article.titre }}</h2></div></a>
+				</div>
+				<ul class="article">
+					<li><p>{{ article.contenu }}</p></li>
+					<li><p>{{ article.auteur }}</p></li>
+					<li><p>Mofdifié le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p></li>
+
+					{% for articlesVus in vus %}
+						{% if articlesVus == article.id %}
+							<p>Article déjà lu</p>
+						{% else %}
+							<p>Article pas encore lu </p>
 						{% endif %}
 					{% endfor %}
-				{% endif %}
+				</ul>
+				<div class="ombre"></div>
 
-			</li>
-		{% endif %}
-	{% endfor %}
-	</ul class="articles">
+			{% endfor %}
+		</div>
+
+
 {% endblock %}
