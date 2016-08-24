@@ -2,9 +2,14 @@
 
 {% block page %}
 
-	<p>Page d'ajout d'un article</p>
-	{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
-	{{ form_widget(form) }}
-	{{ form_end(form) }}
 
+	<div class="flex-container">
+		<div class="flex-item">
+			<p>Page d'ajout d'un article</p>
+			{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+			{{ form_widget(form) }}
+			{{ form_end(form) }}
+		</div>
+
+	</div>
 {% endblock %}
