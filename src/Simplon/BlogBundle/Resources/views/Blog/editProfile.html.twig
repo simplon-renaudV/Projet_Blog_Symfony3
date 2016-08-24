@@ -1,6 +1,6 @@
-{% extends "SimplonBlogBundle:Blog:template.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block body %}
+{% block page %}
 
 	{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
 	{{ form_widget(form) }}

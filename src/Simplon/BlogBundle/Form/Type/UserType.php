@@ -33,6 +33,6 @@ class UserType extends AbstractType
                     'placeholder' => 'Confirmer mot de passe')),
 				))
 			->add('Avatar', FileType::class)
-			->add('Creer', SubmitType::class, array('label' => 'S\'enregistrer'));
+			->add('Creer', SubmitType::class, array('label' => 'Valider'));
     }
 }

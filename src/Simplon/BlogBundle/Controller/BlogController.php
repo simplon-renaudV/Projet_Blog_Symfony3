@@ -81,15 +81,19 @@ class BlogController extends Controller {
 		->find($id);
 
 		$user = $this->get('security.token_storage')->getToken()->getUser();
- 		
- 		if ($user !== null) {
-	 		$articleLu->setArticle($article);
-	 		$articleLu->setUser($user);
-	 		$articleLu->setLu(true);
 
-			$em->persist($articleLu);
-			$em->flush();
-		}
+        $articlesLus = $this->getDoctrine()->getRepository('SimplonBlogBundle:ArticleLu')->findBy(array('article'=>$article, 'user'=>$user));
+
+        if (count($articlesLus)<1) {
+            if ($user !== null) {
+                $articleLu->setArticle($article);
+                $articleLu->setUser($user);
+                $articleLu->setLu(true);
+
+                $em->persist($articleLu);
+                $em->flush();
+            }
+        }
 
 		return $this->render('SimplonBlogBundle:Blog:view.html.twig', array('article' => $article));
 	}

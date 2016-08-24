@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}Accueil{% endblock %} - Blog</title>
-    <link rel="stylesheet" href="{{ asset('css/fonts/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 </head>
@@ -17,20 +16,24 @@
     </header>
 {% endblock %}
 <p>Accueil</p>
-<div class="page">
+<div class="page ">
     {% block page %}
 
-        <main class="flex-conta">
+        <main class="flex-container">
 
             <div class="flex-item">
-
 
                     <p class="lettre animated pulse infinite">blog</p>
 
                 <div class="nav_intro">
-                    <a href="{{ path('Simplon_blog_register') }}"><p class="btn-inscription">S'inscrire</p></a>
-                    <a href="{{ path('Simplon_blog_homepage') }}"><p>Visiter</p></a>
+                    <a href="{{ path('Simplon_blog_register') }}"><p class="btn-inscription">S'inscrire</p>
+                    <br>
+
+
+                    <a class="fleche" href="{{ path('Simplon_blog_homepage') }}"><img src=" {{ asset('images/fleche.png') }}" alt="icone flêche"></a>
+                        <p class="text">Visiter</p>
                 </div>
+
 
             </div>
 
@@ -40,13 +43,20 @@
     {% endblock %} <!-- End page -->
 </div>
 
-
-
+{% block footer%}
+   <footer>
+           <p>    Blog        &copy;
+               <script type="text/javascript">
+                   document.write(new Date().getFullYear());
+               </script>
+               <br> Patrick Morghadi - Renaud Vivancos
+           </p>
+   </footer>
+{% endblock %} <!-- End footer -->
 
 {% block javascripts %}
-    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/jquery.3.1.0.min.js')}}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
 {% endblock %} <!-- End javascripts -->
 </body>
 </html>

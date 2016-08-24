@@ -3,27 +3,30 @@
 {% block page %}
 
 		<div class="liste_articles flex-container">
+
 			{% for article in articles %}
 				<div class="header-article">
 					<h2 class="date_header"><p>{{ article.date | date('d-M') }}<br>{{ article.date | date('Y') }}</p> </h2>
 					<a href="{{ path('Simplon_blog_view_article',{'id': article.id}) }}"><div class="titre"><h2>{{ article.titre }}</h2></div></a>
 				</div>
-				<ul class="article">
+			<ul class="article">
 					<li><p>{{ article.contenu }}</p></li>
 					<li><p>{{ article.auteur }}</p></li>
-					<li><p>Mofdifié le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p></li>
+					<li><p>Modifié le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p></li>
 
-					{% for articlesVus in vus %}
-						{% if articlesVus == article.id %}
-							<p>Article déjà lu</p>
-						{% else %}
-							<p>Article pas encore lu </p>
-						{% endif %}
-					{% endfor %}
-				</ul>
+						{% for articleVu in vus %}
+							{% if articleVu.article.id == article.id and articleVu.user.id == app.user.id %}
+								<p>article déjà lu</p>
+							{% else %}
+								<p>article pas lu</p>
+							{% endif %}
+						{% endfor %}
+
+			</ul>
 				<div class="ombre"></div>
 
 			{% endfor %}
+
 		</div>
 
 

@@ -20,13 +20,7 @@
 				<li><p>{{ article.auteur }}</p></li>
 				<li><p>Modifié le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p></li>
 
-				{% for articlesVus in vus %}
-					{% if articlesVus == article.id %}
-						<p>Article déjà lu</p>
-					{% else %}
-						<p>Article pas encore lu </p>
-					{% endif %}
-				{% endfor %}
+
 			</ul>
 			<div class="ombre"></div>
 

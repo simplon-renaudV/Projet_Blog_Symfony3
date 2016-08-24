@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Simplon\BlogBundle\Entity\User;
 use Simplon\BlogBundle\Entity\Login;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Simplon\BlogBundle\Form\Type\UserType;
 use Simplon\BlogBundle\Form\Type\LoginType;
 
