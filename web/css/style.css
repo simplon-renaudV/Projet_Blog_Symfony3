@@ -1,3 +1,6 @@
+/****************************
+	      FONTS
+****************************/
 @font-face {
     font-family: ariasolid-Regular;
     src: url(../fonts/ariasolid-Regular.ttf);
@@ -13,9 +16,18 @@
 body, html {
     height: 100%;
 }
+
+/****************************
+	      GENERAL
+****************************/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body{
     background-image: url(../images/bg.jpg);
-    background-repeat: no-repeat;/
+    background-repeat: no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
     font-family: classie;
@@ -83,8 +95,7 @@ ul{
 li {
     list-style: none;
 }
-
-/****************************
+/*************************
 	      HEADER
 ****************************/
 
@@ -108,8 +119,11 @@ header {
     line-height:5rem;
     font-family: 'ariasolid-Regular';
     color: #252433;
-    text-shadow: 2px 2px 0px #807DA2;
-
+    text-shadow:
+            #807DA2 3px 3px,
+            #807DA2 -3px 3px,
+            #807DA2 -3px -3px,
+            #807DA2 3px -3px;
 }
 
 /****************************
@@ -199,7 +213,7 @@ header {
     -ms-flex: none;
     flex: none;
     width: 100%;
-    height: 2px;
+    height: 3px;
     background: #807DA2;
     -webkit-transition: all 0.9s ease;
     transition: all 0.9s ease;
@@ -224,7 +238,7 @@ header {
     top: -10px;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 3px;
     background: inherit;
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
@@ -379,42 +393,82 @@ header {
     font-family: 'IndieFlower';
     letter-spacing:1px;
 }
+
 .slogan:first-letter{
     font-size:1.2em;
 }
 
 .lettre{
-    font-size: 3em;
+    font-size: 4em;
     font-family:'ariasolid-Regular';
     margin:auto;
     color: #252433;
     transform:translateX(-15px);
     text-shadow:
-            #4D002A 1px 1px,
-            #4D002A -1px 1px,
-            #4D002A -1px -1px,
-            #4D002A 1px -1px;
+            rgba(255,255,255,0.2) 6px 6px,
+            rgba(255,255,255,0.2) -6px 6px,
+            rgba(255,255,255,0.2) -6px -6px,
+            rgba(255,255,255,0.2) 6px -6px;
+    opacity: 0.7;
 }
+
 .lettre p{
     position: relative;
     justify-content: center;
 }
+
 .nav_intro{
     text-align: center;
-    color: #807DA2;
+    color: #fff;
     z-index: 1000;
 }
+
 .btn-inscription{
-    width: 120px;
-    height: 40px;
-    margin: 10px auto 0 auto;
-    padding: 3px 10px;
-    color: #807DA2;
-    letter-spacing: 2px;
-    border: 1px solid #807DA2;
+    width: 9rem;
+    height: 2.5rem;
+    margin: 2rem auto 0 auto;
+    padding: 0.6rem ;
+    color: rgba(255,255,255,0.5);
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    border: 2px solid rgba(255,255,255,0.5);
     background-color: inherit;
+    opacity: 0.7;
+    -webkit-transition-duration: .75s;
+    transition-duration: .75s;
+}
+.btn-inscription:hover{
+    font-style: oblique;
+    color: #fff;
+    background-color: rgba(255,255,255,0.3);
+}
+.text{
+    margin-top: 0;
+    opacity: 0.3;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    -webkit-transition-duration: 1s;
+    transition-duration: 1s;
 }
 
+.nav_intro img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    opacity: 0.5;
+    -webkit-transition-duration: .75s;
+    transition-duration: .75s;
+}
+
+.nav_intro img:hover {
+    background-color: rgba(255,255,255,0.3);
+    opacity: 0.5;
+}
+
+a.fleche:hover ~ p.text {
+    opacity: 0.7;
+    font-style: oblique;
+}
 /**********************************************
                   FORMULAIRE LOGIN
 **********************************************/
@@ -428,16 +482,20 @@ header {
     background-color: #252433;
     box-shadow: 0px 6px 10px rgba(0,0,0,0.3);
 }
+
 .login h2{
     text-align: center;
     margin: inherit;
 }
+
 .login_form{
     margin:auto;
 }
+
 .champ{
     margin:10px auto;
 }
+
 input .login{
     width:100%;
     text-align: left;
@@ -456,6 +514,7 @@ form {
     border-right: inherit;
     border-left: inherit;
 }
+
 .btn_login{
     width: 89px;
     height: 30px;
@@ -468,17 +527,21 @@ form {
     border: inherit;
 
 }
+
 .login p {
     font-size: 0.8em;
 }
+
 .login a {
     margin-top: 30px;
     padding: 2px;
 
 }
+
 .login p:first-of-type{
     margin: 20px auto 0 auto;
 }
+
 .inscription, #user_Creer {
     margin-top: 10px;
     padding:3px 10px;
@@ -535,7 +598,7 @@ form {
     text-align: center;
 }
 .liste_articles {
-    width: 100%;
+    width: 90%;
     height: auto;
     margin: 100px auto;
     color: #252433;
@@ -546,11 +609,11 @@ form {
     padding: 20px;
     margin: 0!important;
     color: #252433;
-    background-color: #fff;
+    background-color: #eee;
 }
 .ombre{
     width: 100%;
-    height: 20px;
+    height: 30px;
     background-image: url(../images/ombre.png);
     background-repeat: no-repeat;
     background-position: 50% 0;
@@ -558,10 +621,10 @@ form {
     background-size: cover;
 }.header-article{
      width: 100%;
-     height: 100%;
+     height: 120px;
      padding:10px;
      color: #fff;
-     background-color: #252433;
+     background-color: rgba(37, 36, 51, 1);
  }
 .date_header{
     width: 80px;
@@ -572,7 +635,7 @@ form {
     border-radius: 50%;
     font-size: 0.9rem;
     font-weight: bold;
-    background-color: rgba(255, 61, 137, 1);
+    background-color: rgba(199, 0, 97, 1);
 
 }
 .titre {
@@ -587,7 +650,42 @@ form {
         width: 50%;
     }
 }
+/**********************************************
+                   ADMIN ARTICLES
+**********************************************/
 
+
+.contenu {
+    height: auto;
+}
+.admin-bar {
+    height: auto;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.interface-admin {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    width: 300px;
+    height: 300px;
+    margin-top: 8%;
+    padding: 20px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: rgba(199,0,97,0.8);
+}
+.interface-admin ul {
+    padding: inherit!important;
+    margin-top: 50px;
+}
+.interface-admin hr {
+    width: 50%;
+    border:1px solid #252433;
+
+
+}
 /**********************************************
                    ANIMATIONS
 **********************************************/

@@ -1,6 +1,6 @@
-{% extends "SimplonBlogBundle:Blog:template.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block body %}
+{% block page %}
 	<ul>
 	{% for user in users %}
     	<li>username : {{ user.username }}</li>
