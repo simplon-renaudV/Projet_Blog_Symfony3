@@ -1,16 +1,34 @@
 {% extends "::base.html.twig" %}
+ {%  block nav %}
+	 {% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
+	 {% block logo %}
+		 <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
+		 <div class="avatar"><img src=" {{ asset('images/avatars/' ~ {{app.user.avatar}} ~ '')}}" alt=""> </div>
+
+	 {% endblock %}
+ {% endblock %}
 
 {% block page %}
-<div class="liste_articles flex-container" style="color:#fff;"  >
+<div class="liste_articles flex-container" >
 
 	{% for article in articles %}
 		<div class="admin_article">
 			<div class="header-article">
-				<h2 class="date_header"><p>{{ article.date | date('d-M') }}<br>{{ article.date | date('Y') }}</p> </h2>
+				<p>{{app.user.avatar}}</p>
+				<div class="date">
+					<h2 class="date_header">
+						<p>{{ article.date | date('d-M') }}<br>{{ article.date | date('Y') }}</p>
+					</h2>
+				</div>
 				<div class="titre"><h2>{{ article.titre }}</h2></div>
 				<p>Article n°: {{article.id}}</p>
-				<a href="#" id="voir" data-id="{{article.id}}"><button>Afficher/Masquer</button></a>
+				<a href="#" class="afficher"><button>Afficher/Masquer</button></a>
+				<div class="contenu" class="article">
+					<p>{{article.contenu}}</p>
+					<p>Auteur : {{article.auteur}}</p>
+				</div>
 			</div>
+
 			<div class="admin-bar">
 				{% if article.publie == false %}
 					<a href='{{ path('Simplon_blog_publier_article', {'id': article.id}) }}'><button>Publier</button></a>
@@ -23,11 +41,7 @@
 
 			</div>
 		</div>
-		<div class="contenu" class="article">
-			<p>Article : {{article.contenu}}</p>
-			<p>Auteur : {{article.auteur}}</p>
 
-		</div>
 
 	{% endfor %}
 

@@ -13,9 +13,6 @@
     font-family: classie;
     src: url(../fonts/classie.ttf);
 }
-body, html {
-    height: 100%;
-}
 
 /****************************
 	      GENERAL
@@ -25,12 +22,48 @@ body, html {
     margin: 0;
     padding: 0;
 }
+html, body {
+    height: 100%;
+}
+
 body{
-    background-image: url(../images/bg.jpg);
-    background-repeat: no-repeat;
+
+    color: #fff;
+    font-family: classie;
+    /* IE10+ */
+    background-image: -ms-linear-gradient(bottom, #807DA2 0%, #C5415F 50%, #252433 100%);
+
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(bottom, #807DA2 0%, #C5415F 50%, #252433 100%);
+
+    /* Opera */
+    background-image: -o-linear-gradient(bottom, #807DA2 0%, #C5415F 50%, #252433 100%);
+
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #807DA2), color-stop(50, #C5415F), color-stop(100, #252433));
+
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(bottom, #807DA2 0%, #C5415F 50%, #252433 100%);
+
+    /* W3C Markup */
+    background-image: linear-gradient(to top, #807DA2 0%, #C5415F 50%, #252433 100%);
     -webkit-background-size: cover;
     background-size: cover;
-    font-family: classie;
+}
+body::after {
+    content: "";
+    background-image:  url(../images/bg.jpg);
+    background-repeat: repeat-y;
+    -webkit-background-size: cover;
+    background-size: cover;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
 }
 .hidden {
     display: none;
@@ -100,6 +133,10 @@ li {
 ****************************/
 
 header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -183,7 +220,7 @@ header {
 }
 .outer-menu .hamburger {
     position: absolute;
-    top: 0;
+    top: 10px;
     right: 20px;
     z-index: 1;
     width: 60px;
@@ -370,33 +407,6 @@ header {
 /**********************************************
                   ACCUEIL
 **********************************************/
-.slogan{
-    position: absolute;
-    top: 20vh;
-    bottom: 0;
-    left: 0;
-    right: 3%;
-    width:180px;
-    margin: 0 auto;
-    text-align:center;
-    transform: rotate(-5deg);
-    /*background-image: url(../images/bulle.png);
-    background-repeat: no-repeat;
-    -webkit-background-size:contain;
-    background-size:contain;*/
-}
-.slogan p{
-    margin-top: 30px;
-    color: #807DA2;
-    line-height:1.2;
-    font-size:1.2rem;
-    font-family: 'IndieFlower';
-    letter-spacing:1px;
-}
-
-.slogan:first-letter{
-    font-size:1.2em;
-}
 
 .lettre{
     font-size: 4em;
@@ -438,9 +448,8 @@ header {
     transition-duration: .75s;
 }
 .btn-inscription:hover{
-    font-style: oblique;
     color: #fff;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(0,0,0,0.3);
 }
 .text{
     margin-top: 0;
@@ -462,12 +471,11 @@ header {
 
 .nav_intro img:hover {
     background-color: rgba(255,255,255,0.3);
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 a.fleche:hover ~ p.text {
     opacity: 0.7;
-    font-style: oblique;
 }
 /**********************************************
                   FORMULAIRE LOGIN
@@ -594,7 +602,6 @@ form {
 .page {
     width: 100%;
     height: 100%;
-    padding: 20px 0;
     text-align: center;
 }
 .liste_articles {
@@ -602,14 +609,13 @@ form {
     height: auto;
     margin: 100px auto;
     color: #252433;
-
 }
 .article {
     width: 100%;
-    padding: 20px;
+    padding: 4vh 3vw;
     margin: 0!important;
     color: #252433;
-    background-color: #eee;
+    background-color: #fff;
 }
 .ombre{
     width: 100%;
@@ -619,36 +625,55 @@ form {
     background-position: 50% 0;
     -webkit-background-size: cover;
     background-size: cover;
-}.header-article{
+}
+.header-article{
      width: 100%;
-     height: 120px;
-     padding:10px;
+     height: auto;
+     padding: 0.5rem;
      color: #fff;
      background-color: rgba(37, 36, 51, 1);
+     /*background-image: url(../images/bg.jpg);
+     background-repeat: no-repeat;
+     -webkit-background-size: cover;
+     background-size: cover;*/
+ }
+
+ .date {
+     width: 25%;
+     display: inline-block;
+     vertical-align: middle;
  }
 .date_header{
-    width: 80px;
-    height: 80px;
-    padding: 10px;
-    float: left;
-    vertical-align: top;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9vh;
+    height: 9vh;
+    padding: 0.5rem;
+    text-align: center;
     border-radius: 50%;
-    font-size: 0.9rem;
-    font-weight: bold;
     background-color: rgba(199, 0, 97, 1);
-
 }
+.date_header p{
+    font-size: 1.5vh;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: auto;
+}
+
 .titre {
     width: 70%;
     display: inline-block;
-    float: right;
-    vertical-align: top;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 1.6vh;
     color: #babdff;
 }
 @media screen and (min-width: 640px) and (max-width: 2000px) {
     .liste_articles {
         width: 50%;
     }
+
 }
 /**********************************************
                    ADMIN ARTICLES
@@ -656,7 +681,11 @@ form {
 
 
 .contenu {
+    width: 100%;
     height: auto;
+    padding: 20px;
+    color: #252433;
+    background-color: #fff;
 }
 .admin-bar {
     height: auto;
@@ -685,6 +714,39 @@ form {
     border:1px solid #252433;
 
 
+}
+.menu_admin {
+    width:50px;
+    margin-left: auto;
+    margin-right: 100px;
+    margin-top: 10px;
+    text-align: right;
+
+}
+.avatar{
+    width:50px;
+    height: 50px;
+    margin-right: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+}
+.avatar img{
+    width:50px;
+}
+.minifleche {
+    width: 25px;
+    margin-right: -80px;
+}
+/**********************************************
+                   FOOTER
+**********************************************/
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 /**********************************************
                    ANIMATIONS

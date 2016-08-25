@@ -1,16 +1,25 @@
 {% extends "::base.html.twig" %}
 
 {% block page %}
-	<ul>
-	{% for user in users %}
-    	<li>username : {{ user.username }}</li>
-    	<li>roles : 
-    	{% for role in user.roles %}
-			{{ role }} 
- 		{% endfor %}
- 		</li>
-   		<li><a href="{{ path('Simplon_blog_change_role', {'user': user.username }) }}">Changer Role</a></li>
-   		<li><a href="{{ path('Simplon_blog_remove_user', {'user': user.username }) }}">Supprimer l'utilisateur</a></li><br/>
-	{% endfor %}
-	</ul>
+
+
+
+	<div class="flex-container">
+		<div class="flex-item">
+			<ul>
+				{% for user in users %}
+					<li>username : {{ user.username }}</li>
+					<li>roles :
+						{% for role in user.roles %}
+							{{ role }}
+						{% endfor %}
+					</li>
+					<li><a href="{{ path('Simplon_blog_change_role', {'user': user.username }) }}">Changer Role</a></li>
+					<li><a href="{{ path('Simplon_blog_remove_user', {'user': user.username }) }}">Supprimer l'utilisateur</a></li><br/>
+				{% endfor %}
+			</ul>
+		</div>
+
+	</div>
+
 {% endblock %}
