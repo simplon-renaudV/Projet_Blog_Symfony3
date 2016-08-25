@@ -1,6 +1,6 @@
 {
     "description": "Projet de blog pour la certification simplon.co",
-    "name": "Simplon/blog",
+    "name": "simplon/blog",
     "license": "proprietary",
     "type": "project",
     "autoload": {
