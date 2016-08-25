@@ -1,11 +1,18 @@
 {% extends "::base.html.twig" %}
  {%  block nav %}
 	 {% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
-	 {% block logo %}
-		 <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
-		 <div class="avatar"><img src=" {{ asset('images/avatars/' ~ {{app.user.avatar}} ~ '')}}" alt=""> </div>
 
-	 {% endblock %}
+     {% block logo %}
+         <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
+
+         <div class="menu_admin">
+             <img class="minifleche"src="{{ asset('images/minifleche.png')}}" alt="">
+         </div>
+         <div class="avatar">
+             <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+
+         </div>
+     {% endblock %}
  {% endblock %}
 
 {% block page %}
@@ -14,7 +21,6 @@
 	{% for article in articles %}
 		<div class="admin_article">
 			<div class="header-article">
-				<p>{{app.user.avatar}}</p>
 				<div class="date">
 					<h2 class="date_header">
 						<p>{{ article.date | date('d-M') }}<br>{{ article.date | date('Y') }}</p>
