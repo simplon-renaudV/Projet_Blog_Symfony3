@@ -591,7 +591,10 @@ form {
     width: 90%;
     height: auto;
     margin: 100px auto;
-    color: #252433;
+    color: #fff;
+}
+.liste_articles h2{
+    margin: 1rem auto;
 }
 .article {
     width: 100%;
@@ -673,15 +676,25 @@ form {
 /**********************************************
                    ADMIN ARTICLES
 **********************************************/
-
+.admin_article {
+    width: 100%;
+    margin: 1rem auto;
+    box-shadow: 2px 2px 8px #252433;
+}
 
 .contenu {
     width: 100%;
     height: auto;
     margin-top: 1rem;
-    padding: 20px;
+    padding: 2rem 0.5rem;
+    text-align: left;
     color: #252433;
     background-color: #fff;
+}
+.contenu p:nth-of-type(2) {
+    margin-top: 1rem;
+    text-align: left;
+    color: #807DA2;
 }
 .admin-bar {
     height: auto;
@@ -690,6 +703,7 @@ form {
 }
 
 .interface-admin {
+    display: none;
     position: absolute;
     top: 1%;
     right: 1%;
@@ -743,15 +757,23 @@ form {
     margin: 0.5rem auto 0 auto;
     padding: 0.1rem;
     color: rgba(255, 255, 255, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     background-color: inherit;
-    -webkit-transition-duration: .75s;
-    transition-duration: .75s;
+    cursor: pointer;
 }
 
 .afficher button {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     margin: inherit!important;
+}
+.btn-gerer {
+    height: auto;
+    margin: 0.2rem auto 0.2rem auto;
+    padding: 0.2rem 0.4rem;
+    color: #fff;
+    border: inherit;
+    background-color: #807DA2;
+    cursor: pointer;
 }
 /**********************************************
                    FOOTER
@@ -761,6 +783,14 @@ footer{
     position: fixed;
     bottom: 0;
     left: 0;
+    width: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: #680038;
+}
+footer p{
+    font-size: 0.8rem;
+    color: #fff;
 }
 /**********************************************
                    ANIMATIONS

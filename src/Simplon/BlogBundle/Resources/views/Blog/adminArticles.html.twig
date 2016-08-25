@@ -36,7 +36,7 @@
 				</div>
 				<div class="titre"><h2>{{ article.titre }}</h2></div>
 				<span>Article n°: {{article.id}}</span>
-				<a href="#" class="afficher"><button class="btn-afficher">Afficher/Masquer</button></a>
+				<a href="#" class="afficher"><button class="btn-afficher">Afficher / Masquer</button></a>
 				<div class="contenu" class="article">
 					<p>{{article.contenu}}</p>
 					<p>Auteur : {{article.auteur}}</p>
@@ -45,13 +45,13 @@
 
 			<div class="admin-bar">
 				{% if article.publie == false %}
-					<a href='{{ path('Simplon_blog_publier_article', {'id': article.id}) }}'><button>Publier</button></a>
+					<a href='{{ path('Simplon_blog_publier_article', {'id': article.id}) }}'><button class="btn-gerer">Publier</button></a>
 				{% else %}
-					<a href='{{ path('Simplon_blog_publier_article', {'id': article.id}) }}'><button>Retirer</button></a>
+					<a href='{{ path('Simplon_blog_publier_article', {'id': article.id}) }}'><button class="btn-gerer">Retirer</button></a>
 				{% endif %}
 
-				<a href='{{ path('Simplon_blog_update_article', {'id': article.id}) }}' ><button>Modifier</button></a>
-				<a href='{{ path('Simplon_blog_remove_article', {'id': article.id}) }}' ><button>Supprimer</button></a><br/>
+				<a href='{{ path('Simplon_blog_update_article', {'id': article.id}) }}' ><button class="btn-gerer">Modifier</button></a>
+				<a href='{{ path('Simplon_blog_remove_article', {'id': article.id}) }}' ><button class="btn-gerer">Supprimer</button></a><br/>
 
 			</div>
 		</div>
