@@ -176,7 +176,7 @@ class BlogController extends Controller {
 			$em->persist($donnees);
 			$em->flush();
 		
-			$this->addFlash('modifyOk', 'Article modifié');
+
   			return $this->redirectToRoute('Simplon_blog_homepage');
 		}
 

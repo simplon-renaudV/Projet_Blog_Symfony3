@@ -4,10 +4,18 @@
 	
 
 	<div class="flex-container">
-		<div class="flex-item">
-			<p>Page d'ajout d'un article</p>
+		<div class="modifier flex-item">
+			<h2 class="">Modifier l'article</h2>
+
 			{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
-			{{ form_widget(form) }}
+			<div class="modifier_titre">
+				{{ form_errors(form.Titre) }}
+				{{ form_label(form.Titre) }}
+				{{ form_widget(form.Titre, { attr: { novalidate: 'novalidate' } }) }}
+			</div>
+			<div class="modifier_article">
+				{{ form_widget(form.Contenu, { attr: { novalidate: 'novalidate' } }) }}
+			</div>
 			{{ form_end(form) }}
 		</div>
 
