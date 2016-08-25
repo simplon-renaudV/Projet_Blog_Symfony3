@@ -2,17 +2,25 @@
  {%  block nav %}
 	 {% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
 
-     {% block logo %}
-         <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
+	 {% block logo %}
+		 <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-         <div class="menu_admin">
-             <img class="minifleche"src="{{ asset('images/minifleche.png')}}" alt="">
-         </div>
-         <div class="avatar">
-             <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+		 <div class="menu_admin">
+			 <img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
+		 </div>
 
-         </div>
-     {% endblock %}
+		 {% if app.user.avatar == "avatar-defaut.png"  %}
+			 <div class="avatar-defaut">
+				 <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+			 </div>
+		 {% else %}
+			 <div class="avatar">
+				 <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+			 </div>
+		 {% endif %}
+
+
+	 {% endblock %}
  {% endblock %}
 
 {% block page %}
@@ -27,8 +35,8 @@
 					</h2>
 				</div>
 				<div class="titre"><h2>{{ article.titre }}</h2></div>
-				<p>Article n°: {{article.id}}</p>
-				<a href="#" class="afficher"><button>Afficher/Masquer</button></a>
+				<span>Article n°: {{article.id}}</span>
+				<a href="#" class="afficher"><button class="btn-afficher">Afficher/Masquer</button></a>
 				<div class="contenu" class="article">
 					<p>{{article.contenu}}</p>
 					<p>Auteur : {{article.auteur}}</p>

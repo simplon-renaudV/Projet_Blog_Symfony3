@@ -415,7 +415,7 @@ header {
     z-index: 1000;
 }
 
-.btn-inscription{
+.btn-inscription {
     width: 9rem;
     height: 2.5rem;
     margin: 2rem auto 0 auto;
@@ -585,6 +585,7 @@ form {
     width: 100%;
     height: 100%;
     text-align: center;
+    background-color: #eee;
 }
 .liste_articles {
     width: 90%;
@@ -629,17 +630,17 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 9vh;
-    height: 9vh;
-    padding: 0.5rem;
+    width: 7vmax;
+    height: 7vmax;
+    padding: 0.3rem;
     text-align: center;
     border-radius: 50%;
     background-color: rgba(199, 0, 97, 1);
 }
 .date_header p{
-    font-size: 1.5vh;
+    font-size: 1.4vmax;
     font-weight: bold;
-    line-height: 1.5;
+    line-height: 1.3;
     margin: auto;
 }
 
@@ -648,14 +649,26 @@ form {
     display: inline-block;
     vertical-align: middle;
     text-align: left;
-    font-size: 1.6vh;
+    font-size: 1.3vmax;
     color: #babdff;
 }
-@media screen and (min-width: 640px) and (max-width: 2000px) {
+@media screen and (min-width: 800px) and (max-width: 2000px) {
     .liste_articles {
         width: 50%;
     }
 
+    .date_header {
+        width: 5vmax;
+        height: 5vmax;
+        padding: 0.3rem;
+    }
+
+    .date_header p {
+        font-size: 0.9vmax;
+        font-weight: bold;
+        line-height: 1.2;
+        margin: auto;
+    }
 }
 /**********************************************
                    ADMIN ARTICLES
@@ -665,6 +678,7 @@ form {
 .contenu {
     width: 100%;
     height: auto;
+    margin-top: 1rem;
     padding: 20px;
     color: #252433;
     background-color: #fff;
@@ -685,7 +699,6 @@ form {
     padding: 20px;
     border-radius: 50%;
     color: #fff;
-    background-color: rgba(199,0,97,0.8);
 }
 .interface-admin ul {
     padding: inherit!important;
@@ -695,32 +708,50 @@ form {
     width: 50%;
     margin: auto;
     border:1px solid #252433;
-
-
 }
 .menu_admin {
-    width:50px;
+    width:30px;
     margin-left: auto;
     margin-right: 100px;
     margin-top: 10px;
     text-align: right;
-
 }
-.avatar{
-    width:50px;
-    height: 50px;
+
+.avatar img, .avatar-defaut img{
+    width: 45px;
+}
+.avatar, .avatar-defaut {
+    width:45px;
+    height: 45px;
     margin-right: 80px;
-    border-radius: 50%;
     overflow: hidden;
     text-align: center;
+}
+.avatar{
+    border-radius: 50%;
+    border:2px solid #807DA2;
     background-color: #fff;
 }
-.avatar img{
-    width:50px;
-}
 .minifleche {
-    width: 25px;
+    width: 30px;
     margin-right: -80px;
+}
+
+.btn-afficher {
+    width: 9rem;
+    height: 1.5rem;
+    margin: 0.5rem auto 0 auto;
+    padding: 0.1rem;
+    color: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: inherit;
+    -webkit-transition-duration: .75s;
+    transition-duration: .75s;
+}
+
+.afficher button {
+    font-size: 0.6rem;
+    margin: inherit!important;
 }
 /**********************************************
                    FOOTER
