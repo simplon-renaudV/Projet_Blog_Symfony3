@@ -1,19 +1,22 @@
 {% extends "::base.html.twig" %}
-{%  block nav %}
-	{% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
-	{% block logo %}
-		<a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-		<div class="menu_admin">
-			<img class="minifleche"src="{{ asset('images/minifleche.png')}}" alt="">
-		</div>
-		<div class="avatar">
-			<img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+	{%  block nav %}
+		{% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
 
-		</div>
+		{% block logo %}
+			<a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
+
+			<div class="menu_admin">
+				<img class="minifleche"src="{{ asset('images/minifleche.png')}}" alt="">
+			</div>
+			<div class="avatar">
+				<img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+
+			</div>
+		{% endblock %}
 
 	{% endblock %}
-{% endblock %}
+
 {% block page %}
 
 		<div class="liste_articles flex-container">

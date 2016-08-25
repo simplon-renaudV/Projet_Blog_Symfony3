@@ -30,25 +30,7 @@ body{
 
     color: #fff;
     font-family: classie;
-    /* IE10+ */
-    background-image: -ms-linear-gradient(bottom, #807DA2 0%, #C5415F 50%, #252433 100%);
 
-    /* Mozilla Firefox */
-    background-image: -moz-linear-gradient(bottom, #807DA2 0%, #C5415F 50%, #252433 100%);
-
-    /* Opera */
-    background-image: -o-linear-gradient(bottom, #807DA2 0%, #C5415F 50%, #252433 100%);
-
-    /* Webkit (Safari/Chrome 10) */
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #807DA2), color-stop(50, #C5415F), color-stop(100, #252433));
-
-    /* Webkit (Chrome 11+) */
-    background-image: -webkit-linear-gradient(bottom, #807DA2 0%, #C5415F 50%, #252433 100%);
-
-    /* W3C Markup */
-    background-image: linear-gradient(to top, #807DA2 0%, #C5415F 50%, #252433 100%);
-    -webkit-background-size: cover;
-    background-size: cover;
 }
 body::after {
     content: "";
@@ -56,7 +38,7 @@ body::after {
     background-repeat: repeat-y;
     -webkit-background-size: cover;
     background-size: cover;
-    opacity: 0;
+    opacity: 1;
     top: 0;
     left: 0;
     bottom: 0;
@@ -711,6 +693,7 @@ form {
 }
 .interface-admin hr {
     width: 50%;
+    margin: auto;
     border:1px solid #252433;
 
 
