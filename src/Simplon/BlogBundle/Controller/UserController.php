@@ -43,6 +43,9 @@ class UserController extends Controller
 
 			$donnees->setAvatar($fileName);
 		}
+        else{
+            $donnees->setAvatar('avatar-defaut.png');
+        }
 
 	 	$em->persist($donnees);
 		$em->flush();
