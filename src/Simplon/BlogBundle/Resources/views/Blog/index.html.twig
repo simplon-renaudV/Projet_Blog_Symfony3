@@ -2,7 +2,9 @@
 
 {% block page %}
 
-
+	<div class="entete bgi flex-center">
+		<h1>Blog des blogs</h1>
+	</div>
 	<div class="liste_articles flex-container">
 		{% for flash_message in app.session.flashBag.all %}
 			{% for flash in flash_message %}
@@ -22,7 +24,7 @@
 				</div>
 				<a href="{{ path('Simplon_blog_view_article',{'id': article.id}) }}"><div class="titre"><h2>{{ article.titre }}</h2></div></a>
 			</div>
-			<ul class="article">
+			<ul class="contenu_article">
 				<li><p>{{ article.contenu }}</p></li>
 				<li><p>Auteur : {{ article.auteur }}</p></li>
 				<li><p>Modifié le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p></li>
