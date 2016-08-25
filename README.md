@@ -26,6 +26,12 @@ Blog avec 3 types d'utilisateurs différents ayant des droits différents :
 
 - Administrateur : peut ajouter, modifier ou supprimer un article. Peut aussi voir la liste de tout les articles, publiés ou non. En sauvegarder en brouillon pour les publier plus tard, ou bien dépublier ceux déjà publiés. Peut changer le rôle d'un utilisateur pour le passer administrateur ou inversement. Peut supprimer un utilisateur.
 
+####Difficultés rencontrées
+
+- Apprentissage de symfony en même temps que on développait le blog
+- Problème d'hébergement du blog : On a d'abord essayé chez ovh sur un serveur web mutualisé (avec un sous-domaine), mais pas possible de le faire marcher, on a ensuite testé platform.sh mais on a été confronté à un problème de cache. Au final on a donc eu recours au serveur de Simplon Narbonne pour l'hébergement, avec une connexion ssh distante.
+
+
 
 
 
