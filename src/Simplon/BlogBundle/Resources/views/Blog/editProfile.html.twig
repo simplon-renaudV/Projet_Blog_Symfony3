@@ -11,13 +11,13 @@
 
 		<div class="interface-admin flex-center">
 			<ul class="menu ">
-				<li><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
+				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
 
-				<li><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
+				<li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
-				<li><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
 
-				<li><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+				<li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
 			</ul>
 			<p class="close"><i class="fa fa-send" aria-hidden="true"></i>
 			</p>
@@ -37,13 +37,36 @@
 {% endblock %}
 {% block page %}
 
-	<div class="flex-container">
-		<div class="flex-item">
-			{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
-			{{ form_widget(form) }}
-			{{ form_end(form) }}
-		</div>
-<h1>UPDATE</h1>
-	</div>
+			<section class="flex-container  bgi">
+				<div class="login flex-item rotating ">
+					<h2 class="fadeInUp">Modifier</h2>
 
+
+					<div class="login_form fadeInUp">
+						<div class="champ">
+							{{ form_errors(form.Mail) }}
+							{{ form_widget(form.Mail, {'attr': {'class': 'form_input'}}) }}
+						</div>
+						<div class="champ">
+							{{ form_errors(form.Username
+							) }}
+							{{ form_widget(form.Username
+							, {'attr': {'class': 'form_input'}}) }}
+						</div>
+						<div class="champ">
+							{{ form_errors(form.Password) }}
+							{{ form_widget(form.Password.first, {'attr': {'class': 'form_input'}}) }}
+							<div class="champ">
+								{{ form_errors(form.Password) }}
+								{{ form_widget(form.Password.second, {'attr': {'class': 'form_input'}}) }}
+							</div>
+						</div>
+						<div class="champ">
+							{{ form_errors(form.Avatar, {'attr': {'class': 'avatar'}}) }}
+						</div>
+						{{ form_end(form) }}
+
+					</div>
+				</div>
+			</section>
 {% endblock %}

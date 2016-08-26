@@ -11,13 +11,13 @@
 
 		<div class="interface-admin flex-center">
 			<ul class="menu ">
-				<li><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
+				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
 
-				<li><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
+				<li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
-				<li><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
 
-				<li><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+				<li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
 			</ul>
 			<p class="close"><i class="fa fa-send" aria-hidden="true"></i>
 			</p>
@@ -38,23 +38,36 @@
 {% block page %}
 
 
+	<div class="flex-container bgi ">
 
-	<div class="flex-container">
-		<div class="flex-item">
-			<ul>
+		<div class="gestion_users flex-item">
+			<h2 >Gestion des utilisateurs</h2>
+			<br>
+			<hr>
 				{% for user in users %}
-					<li>username : {{ user.username }}</li>
-					<li>roles :
-						{% for role in user.roles %}
-							{{ role }}
-						{% endfor %}
-					</li>
-					<li><a href="{{ path('Simplon_blog_change_role', {'user': user.username }) }}">Changer Role</a></li>
-					<li><a href="{{ path('Simplon_blog_remove_user', {'user': user.username }) }}">Supprimer l'utilisateur</a></li><br/>
+					<h3 class="pseudo">Pseudo : {{ user.username }}</h3>
+					<div class=" flex-center">
+						<div class="">Role :
+							{% for role in user.roles %}
+								{{ role }}
+							{% endfor %}
+
+							<div class="gestion_bar flex-center">
+							<a href="{{ path('Simplon_blog_change_role', {'user': user.username }) }}"><button class="btn-gerer">Changer Role</button></a>
+
+							<a href="{{ path('Simplon_blog_remove_user', {'user': user.username }) }}"><button class="btn-gerer">Supprimer l'utilisateur</button></a>
+							</div>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br/>
+
 				{% endfor %}
-			</ul>
 		</div>
 
 	</div>
+
+
 
 {% endblock %}

@@ -12,13 +12,13 @@
 
 		 <div class="interface-admin flex-center">
 			 <ul class="menu ">
-				 <li><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
+				 <li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
 
-				 <li><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
+				 <li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
-				 <li><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+				 <li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
 
-				 <li><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+				 <li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
 			 </ul>
 			 <p class="close"><i class="fa fa-send" aria-hidden="true"></i>
 			 </p>
@@ -36,9 +36,12 @@
 
 	 {% endblock %}
  {% endblock %}
+
 {% block page %}
 <div class="entete bgi flex-center">
-<h1>Blog des blogs</h1>
+
+<h1>Titre du  blog</h1>
+
 </div>
 		<div class="liste_articles flex-container">
 
@@ -64,7 +67,7 @@
 
 						{% for articleVu in vus %}
 							{% if articleVu.article.id == article.id and articleVu.user.id == app.user.id %}
-								<p>article déjà lu</p>
+								<p class="article_lu">Article déjà lu</p>
 							{% endif %}
 						{% endfor %}
 
