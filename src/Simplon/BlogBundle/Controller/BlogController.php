@@ -177,7 +177,7 @@ class BlogController extends Controller {
 			$em->flush();
 		
 
-  			return $this->redirectToRoute('Simplon_blog_homepage');
+  			return $this->redirectToRoute('Simplon_blog_admin_articles');
 		}
 
     	return $this->render('SimplonBlogBundle:Blog:modify.html.twig', array('form'=>$form->createView()));

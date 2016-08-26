@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>{% block title %}Accueil{% endblock %} - Blog</title>
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/font-awesome/fonts/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 </head>
-<body>
+<body >
 {% block header %}
     <header >
         {%  block nav %}
@@ -16,20 +17,19 @@
     </header>
 {% endblock %}
 <p>Accueil</p>
-<div class="page ">
+<div class="page">
     {% block page %}
 
-        <main class="flex-container">
+        <main class="flex-container bgi">
 
             <div class="flex-item">
 
                     <p class="lettre animated ">blog</p>
 
                 <div class="nav_intro">
+                    <a href="{{ path('Simplon_blog_login') }}"><p class="btn-inscription">login</p>
                     <a href="{{ path('Simplon_blog_register') }}"><p class="btn-inscription">S'inscrire</p>
-                    <br>
-
-
+                        <br>
                     <a class="fleche " href="{{ path('Simplon_blog_homepage') }}"><img src=" {{ asset('images/fleche.png') }}" alt="icone flêche"></a>
                         <p class="text">Visiter</p>
                 </div>

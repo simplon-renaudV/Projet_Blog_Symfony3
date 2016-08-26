@@ -1,48 +1,66 @@
 {% extends "::base.html.twig" %}
 
-{%  block nav %}
-	{% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
+ {%  block nav %}
+	 {% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
 
-	{% block logo %}
-		<a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
+	 {% block logo %}
+		 <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-		<div class="menu_admin">
-			<img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
-		</div>
+		 <div class="menu_admin">
+			 <img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
+		 </div>
 
-			{% if app.user.avatar == "avatar-defaut.png" %}
-				<div class="avatar-defaut">
-			{% else %}
-				<div class="avatar">
-			{% endif %}
-					<img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
-				</div>
+		 <div class="interface-admin flex-center">
+			 <ul class="menu ">
+				 <li><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
 
-	{% endblock %}
-{% endblock %}
+				 <li><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
+				 <li><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+
+				 <li><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+			 </ul>
+			 <p class="close"><i class="fa fa-send" aria-hidden="true"></i>
+			 </p>
+		 </div>
+		 {% if app.user.avatar == "avatar-defaut.png"  %}
+			 <div class="avatar-defaut">
+				 <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+			 </div>
+		 {% else %}
+			 <div class="avatar">
+				 <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+			 </div>
+		 {% endif %}
+
+
+	 {% endblock %}
+ {% endblock %}
 {% block page %}
-
+<div class="entete bgi flex-center">
+<h1>Blog des blogs</h1>
+</div>
 		<div class="liste_articles flex-container">
 
 			{% for article in articles %}
-				<div class="header-article">
-					<div class="date">
-						<h2 class="date_header">
-							<p>{{ article.date | date('d-M') }}<br>{{ article.date | date('Y') }}</p>
-						</h2>
-					</div>
-
-					<a href="{{ path('Simplon_blog_view_article',{'id': article.id}) }}">
-						<div class="titre">
-							<h2>{{ article.titre }}</h2>
+				<div class="article">
+					<div class="header-article">
+						<div class="date">
+							<h2 class="date_header">
+								<p>{{ article.date | date('d-M') }}<br>{{ article.date | date('Y') }}</p>
+							</h2>
 						</div>
-					</a>
-				</div>
-			<ul class="article">
-					<li><p>{{ article.contenu }}</p></li>
-					<li><p>{{ article.auteur }}</p></li>
-					<li><p>Modifié le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p></li>
+
+						<a href="{{ path('Simplon_blog_view_article',{'id': article.id}) }}">
+							<div class="titre">
+								<h2>{{ article.titre }}</h2>
+							</div>
+						</a>
+					</div>
+					<ul class="contenu_article">
+						<li><p>{{ article.contenu }}</p></li>
+						<li><p>{{ article.auteur }}</p></li>
+						<li><p>Modifié le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p></li>
 
 						{% for articleVu in vus %}
 							{% if articleVu.article.id == article.id and articleVu.user.id == app.user.id %}
@@ -50,9 +68,11 @@
 							{% endif %}
 						{% endfor %}
 
-			</ul>
-				<div class="ombre"></div>
+					</ul>
 
+				</div>
+
+				<div class="ombre"></div>
 			{% endfor %}
 
 		</div>
