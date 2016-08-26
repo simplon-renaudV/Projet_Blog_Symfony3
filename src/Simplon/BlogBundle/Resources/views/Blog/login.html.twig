@@ -12,7 +12,6 @@
 
       <h2 class="fadeInUp">Se connecter</h2>
 
-
       <div class="login_form fadeInUp">
 
         {% if error %}
@@ -20,13 +19,13 @@
         {% endif %}
 
         <form action="{{ path('Simplon_blog_login_check') }}" method="post">
-<div class="champ">
-  <input class="form_input" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Pseudo" />
-</div>
+            <div class="champ">
+              <input class="form_input" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Pseudo" />
+            </div>
 
-<div class="champ">
-  <input class="form_input" type="password" id="password" name="_password" placeholder="Mot de passe"  />
-</div>
+            <div class="champ">
+              <input class="form_input" type="password" id="password" name="_password" placeholder="Mot de passe" />
+            </div>
 
           <br />
           <input type="submit" value="Login" class="btn_login"/>

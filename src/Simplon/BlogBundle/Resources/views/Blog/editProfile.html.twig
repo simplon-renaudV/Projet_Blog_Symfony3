@@ -37,34 +37,36 @@
 {% endblock %}
 {% block page %}
 
-	<div class="flex-container bgi">
-		<div class="modifier flex-item">
-			<h2>Modifier le profil</h2>
-			<div class="modifier_titre">
-				<div class="champ">
-					{{ form_errors(form.Mail) }}
-					{{ form_widget(form.Mail, {'attr': {'class': 'form_input'}}) }}
-				</div>
-				<div class="champ">
-					{{ form_errors(form.Username
-					) }}
-					{{ form_widget(form.Username
-					, {'attr': {'class': 'form_input'}}) }}
-				</div>
-				<div class="champ">
-					{{ form_errors(form.Password) }}
-					{{ form_widget(form.Password.first, {'attr': {'class': 'form_input'}}) }}
-					<div class="champ">
-						{{ form_errors(form.Password) }}
-						{{ form_widget(form.Password.second, {'attr': {'class': 'form_input'}}) }}
+			<section class="flex-container  bgi">
+				<div class="login flex-item rotating ">
+					<h2 class="fadeInUp">Modifier</h2>
+
+
+					<div class="login_form fadeInUp">
+						<div class="champ">
+							{{ form_errors(form.Mail) }}
+							{{ form_widget(form.Mail, {'attr': {'class': 'form_input'}}) }}
+						</div>
+						<div class="champ">
+							{{ form_errors(form.Username
+							) }}
+							{{ form_widget(form.Username
+							, {'attr': {'class': 'form_input'}}) }}
+						</div>
+						<div class="champ">
+							{{ form_errors(form.Password) }}
+							{{ form_widget(form.Password.first, {'attr': {'class': 'form_input'}}) }}
+							<div class="champ">
+								{{ form_errors(form.Password) }}
+								{{ form_widget(form.Password.second, {'attr': {'class': 'form_input'}}) }}
+							</div>
+						</div>
+						<div class="champ">
+							{{ form_errors(form.Avatar, {'attr': {'class': 'avatar'}}) }}
+						</div>
+						{{ form_end(form) }}
+
 					</div>
 				</div>
-				<div class="champ">
-					{{ form_errors(form.Avatar, {'attr': {'class': 'avatar'}}) }}
-				</div>
-					{{ form_end(form) }}
-			<div>
-		</div>
-	</div>
-
+			</section>
 {% endblock %}
