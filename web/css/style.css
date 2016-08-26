@@ -596,7 +596,8 @@ form {
 .liste_articles {
     width: 95%;
     height: auto;
-    margin: -90px auto 3rem auto;
+    margin: -90px auto 0 auto;
+    padding-bottom: 10vh;
 }
 .liste_articles2 {
     width: 95%;
