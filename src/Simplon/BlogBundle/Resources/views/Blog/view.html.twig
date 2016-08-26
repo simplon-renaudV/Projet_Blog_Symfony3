@@ -1,26 +1,44 @@
 {% extends "::base.html.twig" %}
-{%  block nav %}
-	{% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
+ {%  block nav %}
+	 {% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
 
-{% block logo %}
-<a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
+	 {% block logo %}
+		 <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-<div class="menu_admin">
-	<img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
-</div>
+		 <div class="menu_admin">
+			 <img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
+		 </div>
 
-{% if app.user.avatar == "avatar-defaut.png" %}
-<div class="avatar-defaut">
-	{% else %}
-	<div class="avatar">
-		{% endif %}
-		<img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
-	</div>
+		 <div class="interface-admin flex-center">
+			 <ul class="menu ">
+				 <li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
 
-	{% endblock %}
-	{% endblock %}
+				 <li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
+
+				 <li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+
+				 <li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+			 </ul>
+			 <p class="close"><i class="fa fa-send" aria-hidden="true"></i>
+			 </p>
+		 </div>
+		 {% if app.user.avatar == "avatar-defaut.png"  %}
+			 <div class="avatar-defaut">
+				 <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+			 </div>
+		 {% else %}
+			 <div class="avatar">
+				 <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+			 </div>
+		 {% endif %}
+
+
+	 {% endblock %}
+ {% endblock %}
 {% block page %}
-
+	<div class="entete bgi flex-center">
+		<h1>Blog des blogs</h1>
+	</div>
 	<div class="liste_articles flex-container">
 
 
@@ -32,7 +50,7 @@
 			</div>
 				<a href="{{ path('Simplon_blog_view_article',{'id': article.id}) }}"><div class="titre"><h2>{{ article.titre }}</h2></div></a>
 			</div>
-			<ul class="article">
+			<ul class="contenu_article">
 				<li><p>{{ article.contenu }}</p></li>
 				<li><p>{{ article.auteur }}</p></li>
 				<li><p>Modifié le {{ article.date | date('d-m-Y') }} à {{article.date | date('H:i:s') }}</p></li>

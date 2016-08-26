@@ -11,13 +11,13 @@
 
 		<div class="interface-admin flex-center">
 			<ul class="menu ">
-				<li><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
+				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
 
-				<li><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
+				<li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
-				<li><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
 
-				<li><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+				<li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
 			</ul>
 			<p class="close"><i class="fa fa-send" aria-hidden="true"></i>
 			</p>
@@ -39,8 +39,9 @@
 
 
 
-	<div class="flex-container">
+	<div class="flex-container bgi">
 		<div class="flex-item">
+		<h2>Gérer les users</h2>
 			<ul>
 				{% for user in users %}
 					<li>username : {{ user.username }}</li>
@@ -56,5 +57,36 @@
 		</div>
 
 	</div>
+
+
+<div class="flex-container bgi">
+	<div class="modifier flex-item">
+		<h2>Modifier le profil</h2>
+		<div class="modifier_titre">
+			<div class="champ">
+				{{ form_errors(form.Mail) }}
+				{{ form_widget(form.Mail, {'attr': {'class': 'form_input'}}) }}
+			</div>
+			<div class="champ">
+				{{ form_errors(form.Username
+				) }}
+				{{ form_widget(form.Username
+				, {'attr': {'class': 'form_input'}}) }}
+			</div>
+			<div class="champ">
+				{{ form_errors(form.Password) }}
+				{{ form_widget(form.Password.first, {'attr': {'class': 'form_input'}}) }}
+				<div class="champ">
+					{{ form_errors(form.Password) }}
+					{{ form_widget(form.Password.second, {'attr': {'class': 'form_input'}}) }}
+				</div>
+			</div>
+			<div class="champ">
+				{{ form_errors(form.Avatar, {'attr': {'class': 'avatar'}}) }}
+			</div>
+			{{ form_end(form) }}
+			<div>
+			</div>
+		</div>
 
 {% endblock %}

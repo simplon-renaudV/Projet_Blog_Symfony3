@@ -11,13 +11,13 @@
 
 		<div class="interface-admin flex-center">
 			<ul class="menu ">
-				<li><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
+				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
 
-				<li><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
+				<li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
-				<li><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
 
-				<li><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+				<li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
 			</ul>
 			<p class="close"><i class="fa fa-send" aria-hidden="true"></i>
 			</p>
@@ -35,10 +35,11 @@
 
 	{% endblock %}
 {% endblock %}
+
 {% block page %}
 	<div class="flex-container bgi">
 		<div class="modifier flex-item">
-			<h2 class="">Ajouter un article</h2>
+			<h2>Ajouter un article</h2>
 
 			{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
 			<div class="modifier_titre">
@@ -46,7 +47,7 @@
 				{{ form_label(form.Titre) }}
 				{{ form_widget(form.Titre, { attr: { novalidate: 'novalidate' } }) }}
 			</div>
-			<div class="modifier_article">
+			<div class="modifier_article ">
 				{{ form_widget(form.Contenu, { attr: { novalidate: 'novalidate' } }) }}
 			</div>
 			{{ form_end(form) }}

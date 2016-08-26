@@ -3,7 +3,7 @@
 {% block page %}
 
 	<div class="entete bgi flex-center">
-		<h1>Blog des blogs</h1>
+		<h1>Titre du blog</h1>
 	</div>
 	<div class="liste_articles flex-container">
 		{% for flash_message in app.session.flashBag.all %}
@@ -33,4 +33,5 @@
 
 		{% endfor %}
 	</div>
+
 {% endblock %}
