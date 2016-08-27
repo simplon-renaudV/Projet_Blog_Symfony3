@@ -1,13 +1,13 @@
 {% extends "::base.html.twig" %}
   {%  block nav %}
       {% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
+      <style>
 
+      </style>
       {% block logo %}
           <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-          <div class="menu_admin">
-              <img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
-          </div>
+          <div class="menu_admin down animated flipInX"></div>
 
           <div class="interface-admin flex-center">
               <ul class="menu ">
@@ -15,12 +15,11 @@
 
                   <li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
+                  <li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+
                   <li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
 
-                  <li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
               </ul>
-              <p class="close"><i class="fa fa-send" aria-hidden="true"></i>
-              </p>
           </div>
           {% if app.user.avatar == "avatar-defaut.png"  %}
               <div class="avatar-defaut">
@@ -41,6 +40,8 @@
         <h1>Gérer les articles</h1>
     </div>
     <div class="flex-container ">
+        <a href="{{ path('Simplon_blog_add_article') }}"><button class="btn-afficher">Ajouter un article</button></a>
+
         <div class="liste_articles flex-container " >
 
             {% for article in articles %}
@@ -52,12 +53,16 @@
                             </h2>
                         </div>
                         <div class="titre"><h2>{{ article.titre }}</h2></div>
-                        <span>Article n°: {{article.id}}</span>
-                        <a href="#" class="afficher"><button class="btn-afficher">Afficher / Masquer</button></a>
-                        <div class="contenu" class="article">
-                            <p>{{article.contenu}}</p>
-                            <p>Auteur : {{article.auteur}}</p>
+                        <div class="afficher-bar">
+                            <span>Article n°: {{article.id}}</span>
+                            <a href="#" class="afficher"><button class="btn-afficher">Afficher / Masquer</button></a>
+                            <div class="contenu" class="article">
+                                <p>{{article.contenu}}</p>
+                                <p>Auteur : {{article.auteur}}</p>
+                            </div>
                         </div>
+
+
                     </div>
 
                     <div class="admin-bar">

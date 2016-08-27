@@ -1,40 +1,37 @@
 {% extends "::base.html.twig" %}
-{%  block nav %}
-	{% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
+ {%  block nav %}
+	 {% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
 
-	{% block logo %}
-		<a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
+	 {% block logo %}
+		 <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-		<div class="menu_admin">
-			<img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
-		</div>
+		 <div class="menu_admin down animated flipInX"></div>
 
-		<div class="interface-admin flex-center">
-			<ul class="menu ">
-				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
+		 <div class="interface-admin flex-center">
+			 <ul class="menu ">
+				 <li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_edit_profile', {'user': app.user.username }) }}'>Modifier le profil</a></li>
 
-				<li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
+				 <li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
-				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+				 <li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
 
-				<li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
-			</ul>
-			<p class="close"><i class="fa fa-send" aria-hidden="true"></i>
-			</p>
-		</div>
-		{% if app.user.avatar == "avatar-defaut.png"  %}
-			<div class="avatar-defaut">
-				<img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
-			</div>
-		{% else %}
-			<div class="avatar">
-				<img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
-			</div>
-		{% endif %}
+				 <li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
+
+			 </ul>
+		 </div>
+		 {% if app.user.avatar == "avatar-defaut.png"  %}
+			 <div class="avatar-defaut">
+				 <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+			 </div>
+		 {% else %}
+			 <div class="avatar">
+				 <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
+			 </div>
+		 {% endif %}
 
 
-	{% endblock %}
-{% endblock %}
+	 {% endblock %}
+ {% endblock %}
 {% block page %}
 
 			<section class="flex-container  bgi">

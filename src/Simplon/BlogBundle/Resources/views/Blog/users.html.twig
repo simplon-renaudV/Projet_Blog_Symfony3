@@ -5,9 +5,8 @@
 	{% block logo %}
 		<a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-		<div class="menu_admin">
-			<img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
-		</div>
+		<div class="menu_admin down animated flipInX"></div>
+
 
 		<div class="interface-admin flex-center">
 			<ul class="menu ">
@@ -15,9 +14,10 @@
 
 				<li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
+				<li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+
 				<li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
 
-				<li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
 			</ul>
 			<p class="close"><i class="fa fa-send" aria-hidden="true"></i>
 			</p>
@@ -38,15 +38,16 @@
 {% block page %}
 
 
-	<div class="flex-container bgi ">
+	<div class="bgi ">
 
-		<div class="gestion_users flex-item">
+
 			<h2 >Gestion des utilisateurs</h2>
 			<br>
 			<hr>
 				{% for user in users %}
+		<div class="gestion_users">
 					<h3 class="pseudo">Pseudo : {{ user.username }}</h3>
-					<div class=" flex-center">
+					<div class=" ">
 						<div class="">Role :
 							{% for role in user.roles %}
 								{{ role }}
@@ -62,9 +63,9 @@
 					<br>
 					<hr>
 					<br/>
-
-				{% endfor %}
 		</div>
+				{% endfor %}
+
 
 	</div>
 

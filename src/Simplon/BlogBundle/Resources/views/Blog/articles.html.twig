@@ -6,9 +6,8 @@
 	 {% block logo %}
 		 <a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-		 <div class="menu_admin">
-			 <img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
-		 </div>
+		 <div class="menu_admin down animated flipInX"></div>
+
 
 		 <div class="interface-admin flex-center">
 			 <ul class="menu ">
@@ -16,9 +15,11 @@
 
 				 <li class="animated fadeInUpBig"><a href="{{ path('Simplon_blog_liste_users') }}">Gerer utilisateurs</a></li>
 
+				 <li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+
 				 <li class="animated fadeInDownBig"><a href='{{ path('Simplon_blog_logout') }}'>Se déconnecter</a></li>
 
-				 <li class="animated fadeInUpBig"><a href='{{ path('Simplon_blog_add_article') }}'>Ajouter un article</a></li>
+
 			 </ul>
 			 <p class="close"><i class="fa fa-send" aria-hidden="true"></i>
 			 </p>
@@ -39,9 +40,7 @@
 
 {% block page %}
 <div class="entete bgi flex-center">
-
 <h1>Titre du  blog</h1>
-
 </div>
 		<div class="liste_articles flex-container">
 
@@ -67,7 +66,7 @@
 
 						{% for articleVu in vus %}
 							{% if articleVu.article.id == article.id and articleVu.user.id == app.user.id %}
-								<p class="article_lu">Article déjà lu</p>
+								<p class="article_lu">Article<br>déjà<br>lu</p>
 							{% endif %}
 						{% endfor %}
 
