@@ -895,16 +895,16 @@ form {
     background-color: #87034A;
 }
 .gestion_users {
-    width: 45%;
+    width: 80%;
     height: auto;
     margin:1vh auto;
-    padding: 3rem 0.5rem;
+    padding: 1rem;
     background-color: #252433;
     display: inline-block;
 }
 .gestion_users hr {
     width: 60%;
-    margin: auto;
+    margin: 1rem auto;
     border:1px solid #680038;
 }
 .pseudo {
@@ -960,7 +960,7 @@ footer p{
         width: 50%;
     }
     .gestion_users {
-        width: 20%;
+        width: 33%;
     }
 }
 /**********************************************

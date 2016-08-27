@@ -37,37 +37,32 @@
 {% endblock %}
 {% block page %}
 
+	<div class="entete bgi flex-center">
+		<h1>Gérer les utilisateurs</h1>
+	</div>
 
-	<div class="bgi ">
-
-
-			<h2 >Gestion des utilisateurs</h2>
-			<br>
-			<hr>
 				{% for user in users %}
-		<div class="gestion_users">
-					<h3 class="pseudo">Pseudo : {{ user.username }}</h3>
-					<div class=" ">
-						<div class="">Role :
-							{% for role in user.roles %}
-								{{ role }}
-							{% endfor %}
+					<div class="gestion_users">
+						<h3 class="pseudo">Pseudo : {{ user.username }}</h3>
+							<div class=" ">
+								<div class="">Role :
+										{% for role in user.roles %}
+											{{ role }}
+										{% endfor %}
+										<br>
+										<hr>
+										<div class="gestion_bar flex-center">
+										<a href="{{ path('Simplon_blog_change_role', {'user': user.username }) }}"><button class="btn-gerer">Changer Role</button></a>
 
-							<div class="gestion_bar flex-center">
-							<a href="{{ path('Simplon_blog_change_role', {'user': user.username }) }}"><button class="btn-gerer">Changer Role</button></a>
-
-							<a href="{{ path('Simplon_blog_remove_user', {'user': user.username }) }}"><button class="btn-gerer">Supprimer l'utilisateur</button></a>
+										<a href="{{ path('Simplon_blog_remove_user', {'user': user.username }) }}"><button class="btn-gerer">Supprimer l'utilisateur</button></a>
+										</div>
+									</div>
 							</div>
-						</div>
+
 					</div>
-					<br>
-					<hr>
-					<br/>
-		</div>
 				{% endfor %}
 
 
-	</div>
 
 
 
