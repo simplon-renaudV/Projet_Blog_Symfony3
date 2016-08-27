@@ -5,9 +5,8 @@
 	{% block logo %}
 		<a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
 
-		<div class="menu_admin">
-			<img class="minifleche" src="{{ asset('images/minifleche.png')}}" alt="">
-		</div>
+		<div class="menu_admin down animated flipInX"></div>
+
 
 		<div class="interface-admin flex-center">
 			<ul class="menu ">
@@ -36,7 +35,13 @@
 	{% endblock %}
 {% endblock %}
 
+
 {% block page %}
+
+	<div class="entete bgi flex-center">
+		<h1>Gérer les articles</h1>
+	</div>
+
 	<div class="flex-container bgi">
 		<div class="modifier flex-item">
 			<h2>Ajouter un article</h2>
