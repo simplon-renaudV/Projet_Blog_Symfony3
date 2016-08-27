@@ -833,7 +833,7 @@ form {
     padding-top: 1rem;
     margin: -90px auto 6rem auto;
     background-color: rgba(36,37,51,1);
-    box-shadow:  0px 2px 10px rgba(0,0,0,0.5);
+    box-shadow:  0px 2px 10px rgba(0,0,0,0.3);
 
 }
 .modifier h2{
@@ -895,11 +895,12 @@ form {
     background-color: #87034A;
 }
 .gestion_users {
-    width: 90%;
+    width: 45%;
     height: auto;
-    margin:10vh auto;
+    margin:1vh auto;
     padding: 3rem 0.5rem;
     background-color: #252433;
+    display: inline-block;
 }
 .gestion_users hr {
     width: 60%;
@@ -959,7 +960,7 @@ footer p{
         width: 50%;
     }
     .gestion_users {
-        width: 50%;
+        width: 20%;
     }
 }
 /**********************************************
