@@ -40,8 +40,9 @@
 	</div>
 	<div class="liste_articles flex-container">
 
-		<a href="{{ path('Simplon_blog_listeArticles') }}"><button class="btn-afficher">Tous les articles</button></a>
-		<div class="header-article">
+		<a href="{{ path('Simplon_blog_listeArticles') }}"><button class=" btn-afficher">Tous les articles</button></a>
+
+		<div  class="header-article">
 			<div class="date">
 				<h2 class="date_header">
 					<p>{{ article.date | date('d-M') }}<br>{{ article.date | date('Y') }}</p>
@@ -56,7 +57,8 @@
 
 
 			</ul>
+		</div>
 			<div class="ombre"></div>
-
 	</div>
+
 {% endblock %}

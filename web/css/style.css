@@ -595,10 +595,9 @@ form {
     margin: -90px auto 0 auto;
     padding-bottom: 10vh;
 }
-.liste_articles2 {
-    width: 95%;
-    height: auto;
-    margin: 100px auto 3rem auto;
+.liste_articles .btn-afficher {
+
+    margin-bottom: 0.8rem;
 }
 .liste_articles h2, .liste_articles2 h2{
     margin: 0 auto;
@@ -612,8 +611,9 @@ form {
     position: absolute;
     right: 10px;
     top: 0;
-    width:  4.375rem;
-    padding: 10px;
+    width:  auto;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
     font-size: small;
     color: #fff;
     border-radius: 0 0 50% 50%;
@@ -649,7 +649,6 @@ form {
 .header-article{
     width: 100%;
     height: auto;
-    margin-top: 0.5rem;
     padding: 0.5rem 0;
     text-align: center;
     color: #fff;

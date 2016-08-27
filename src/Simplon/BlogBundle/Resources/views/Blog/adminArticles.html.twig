@@ -23,11 +23,11 @@
           </div>
           {% if app.user.avatar == "avatar-defaut.png"  %}
               <div class="avatar-defaut">
-                  <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="" style="background-position: center center">
+                  <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
               </div>
           {% else %}
               <div class="avatar">
-                  <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="" style="background-position: center center">
+                  <img src=" {{ asset('images/avatars/'~app.user.avatar~'')}}" alt="">
               </div>
           {% endif %}
 
@@ -40,6 +40,8 @@
         <h1>Gérer les articles</h1>
     </div>
     <div class="flex-container ">
+        <a href="{{ path('Simplon_blog_add_article') }}"><button class="btn-afficher">Ajouter un article</button></a>
+
         <div class="liste_articles flex-container " >
 
             {% for article in articles %}
