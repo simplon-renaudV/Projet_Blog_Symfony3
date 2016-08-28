@@ -1,5 +1,16 @@
 {% extends "::base.html.twig" %}
+{%  block nav %}
+	{% include '::nav.html.twig' %} <!-- Inclusion de la navigation -->
+	<style>
 
+	</style>
+	{% block logo %}
+		<a href="{{ path('Simplon_blog_accueil') }}"><div class="logo animated bounceIn">blog</div></a>
+
+
+
+	{% endblock %}
+{% endblock %}
 {% block page %}
 
 	<div class="entete bgi flex-center">
